@@ -1,0 +1,23 @@
+.overtime_btn{
+    border: 1px solid transparent;
+    padding: 0px;
+    background-color: transparent;
+    
+}
+
+.input_width{
+    width: 80px;
+}
+
+.cancel_icon{
+    color: red;
+    font-size: 50px;
+ 
+    margin-bottom: 10px;
+
+    
+}
+
+.popup_content{
+    text-align: center;
+}

@@ -1,0 +1,83 @@
+.attendance_table {
+    position: relative;
+    top: -10px;
+    margin-top: 20px;
+}
+
+
+.attendance_table-holder {
+    height: 290px;
+    width: 1000px;
+}
+
+
+.search-bar {
+    width: 150px !important;
+    height: 30px !important;
+    margin-left: 3px;
+
+}
+
+.search-holder {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.card-1 {
+    width: 50%;
+    background-color: white;
+    margin-right: 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px;
+    height: 500px;
+}
+
+.attenance_graph-holder {
+    width: 100%;
+    margin-left: 5%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.leave-card {
+    width: 500px;
+    background-color: white;
+    margin-right: 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px;
+    height: 500px;
+}
+
+.leave-comp {
+    padding: 20px;
+    border: 1px solid rgb(178, 178, 178);
+    margin-bottom: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+
+
+
+}
+
+
+.avatar{
+    margin-right: 20px !important;
+}
+
+.view_page{
+   background-color: aquamarine;
+   border-radius: 8px;
+   padding: 3px;
+   position: relative;
+   left: 80px;
+   top: 7px;
+   padding-left: 10px;
+   padding-right: 10px;
+
+}
+
+
