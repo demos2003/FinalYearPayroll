@@ -1,74 +1,58 @@
-
-import '../src/Views/App.css';
-import Login from '../src/Views/Login';
-import {Dashboard} from '../src/Views/Dashboard'
-// import './bootstrap.css';
-import 'bootstrap/dist/css/bootstrap.css'; 
+import "../src/Views/CSS/App.css";
+import Login from "../src/Views/Login";
+import { Dashboard } from "../src/Views/Dashboard";
+import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap";
-import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Attendance from '../src/Views/Attendance';
-import Employees from '../src/Views/Employees';
-import Positions from '../src/Views/Positions';
-import Payroll from '../src/Views/Payroll';
-import EmployeePage from '../src/Views/EmployeePage';
-import Deductions from '../src/Views/Deductions';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Attendance from "../src/Views/Attendance";
+import Employees from "../src/Views/Employees";
+import Positions from "../src/Views/Positions";
+import EmployeePage from "../src/Views/EmployeePage";
+import Deductions from "../src/Views/Deductions";
+import UserLogin from "./Views/UserLogin";
+import { UserHomepage } from "./Views/UserHomepage";
 
 export default function App() {
   return (
     <Router>
-  <div className="App">
-   <Routes>
-          <Route path="/login" element={<Login/>} />
-            
-          <Route path="/" element ={<Dash/>} />
-          <Route path="/dashboard" element ={<Dash/>} />
-         
-         
-          {/* <Route path="/" element={<Home/>} /> */}
-
-          <Route path="/attendance" element={<Attend/>} />
-          
-          <Route path="/employees" element={<Employ/>} />
-          <Route path="/positions" element={<Postion/>} />
-          <Route path="/payroll" element={<Pay/>} />
-          <Route path="/employeePage" element={<EPage/>} />
-          <Route path="/deductions" element={<Deduc/>} />
+      <div className="App">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Dash />} />
+          <Route path="/dashboard" element={<Dash />} />
+          <Route path="/attendance" element={<Attend />} />
+          <Route path="/employees" element={<Employ />} />
+          <Route path="/positions" element={<Postion />} />
+          <Route path="/employeePage" element={<EPage />} />
+          <Route path="/deductions" element={<Deduc />} />
+          <Route path="/UserLogin" element={<UserLogin />} />
+          <Route path="UserHomepage" element={<UserHomepage />} />
         </Routes>
-    </div>
+      </div>
     </Router>
-     
-
   );
 }
-function Home() {
-  return <h2>Home</h2>;
-  }
-  
-function Dash(){
-  return <Dashboard/>;
+
+function Dash() {
+  return <Dashboard />;
 }
-  
-  function Attend() {
-  return <Attendance/>;
-  }
 
-  function Employ(){
-    return <Employees/>
-  }
+function Attend() {
+  return <Attendance />;
+}
 
-  function Postion(){
-    return<Positions/>
-  }
+function Employ() {
+  return <Employees />;
+}
 
-  function Pay(){
-    return<Payroll/>
-  }
+function Postion() {
+  return <Positions />;
+}
 
-  function EPage(){
-    return<EmployeePage/>
-  }
+function EPage() {
+  return <EmployeePage />;
+}
 
-  function Deduc(){
-    return<Deductions/>
-  }
+function Deduc() {
+  return <Deductions />;
+}

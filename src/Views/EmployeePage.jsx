@@ -1,12 +1,9 @@
 import React from 'react'
-import './App.css';
+import './CSS/App.css';
 import {BsTelephone, BsPerson} from  "react-icons/bs";
 import {AiOutlineMail, AiOutlineCalendar, AiOutlineArrowRight} from "react-icons/ai"
 import {BiHomeAlt} from "react-icons/bi"
 import { VictoryPie } from 'victory';
-import 'bootstrap/dist/css/bootstrap.css';
-
-// import PieChart from './PieChart';
 
 
 

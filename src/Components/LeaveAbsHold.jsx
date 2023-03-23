@@ -1,7 +1,7 @@
 import React from 'react'
 import LeaveAbs from '../Components/LeaveAbs'
-import '../Views/Attendance.css'
-import '../Views/App.css'
+import '../Views/CSS/Attendance.css'
+import '../Views/CSS/App.css'
 
 
 export const LeaveAbsHold = () => {

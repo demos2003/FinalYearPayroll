@@ -1,25 +1,24 @@
-import "./CSS/App.css";
-import "./CSS/Dashboard.css";
-import { Avatar } from "@mui/material";
-import "bootstrap/dist/css/bootstrap.css";
+
+import './CSS/App.css';
+import './CSS/Dashboard.css'
+import { Avatar } from '@mui/material';
+import 'bootstrap/dist/css/bootstrap.css';
 import React, { useContext } from "react";
-import { BiMoney } from "react-icons/bi";
-import { BsPersonSquare } from "react-icons/bs";
-import { AiOutlineHome } from "react-icons/ai";
+import {AiOutlineHome} from "react-icons/ai"
+import {FiSettings} from "react-icons/fi"
 import { useState, useEffect } from "react";
-import { BsPeople } from "react-icons/bs";
 import { AiOutlineTable, AiOutlineContacts } from "react-icons/ai";
 import { MdArrowDropDown } from "react-icons/md";
-import DashboardCont from "./DashbardCont";
-import Deductions from "./Deductions";
-import Position from "./Positions";
-import Employees from "./Employees";
-import { BiLogOut } from "react-icons/bi";
+import { StaffAttendance } from '../Components/StaffAttendance';
+import { Payslip } from '../Components/Payslip';
+import { BiLogOut } from "react-icons/bi"
 
-export const Dashboard = () => {
+export const UserHomepage = () => {
+
+   
   // api consumption begin
   const [active, setActive] = useState("FirstTable");
-  return (
+ return (
     <div className="admin-holder">
       {/* bootsrap link */}
       <link
@@ -31,14 +30,14 @@ export const Dashboard = () => {
         <div>
           <div className="sidebar1">
             <div className="user1">
-              <div className="head1">
-                <h5 style={{ color: "white" }}>ADMIN PANEL</h5>
+                <div className="head1">
+              <h5 style={{color:"white"}}>USER PANEL</h5>
               </div>
               <Avatar src="/broken-image.jpg" />
               <div className="dropdown">
                 {/* logout and change password drop down */}
                 <div className="logout-dropdown">
-                  <p className="user-name">
+                  <p className='user-name'>
                     DEMILADE
                     <MdArrowDropDown className="aIcon-pos" />
                   </p>
@@ -56,29 +55,36 @@ export const Dashboard = () => {
             <div className="options">
               <p className="option">
                 <AiOutlineHome className="o-icon" />
-                <a onClick={() => setActive("FirstTable")}>DASHBOARD</a>
+                <a  onClick={() => setActive("FirstTable")}>
+                  ATTENDANCE 
+                </a>
               </p>
               <p className="option">
                 <AiOutlineTable className="o-icon" />
-                <a onClick={() => setActive("SecondTable")}>ATTENDANCE</a>
+                <a  onClick={() => setActive("SecondTable")}>
+                  PAYSLIP
+                </a>
               </p>
               <p className="option">
-                <BsPersonSquare className="o-icon" />
-                <a onClick={() => setActive("FifthTable")}>POSITIONS</a>
+                <FiSettings className="o-icon" />
+                <a  onClick={() => setActive("ThirdTable")}>
+                  SETTINGS
+                </a>
               </p>
               <p className="option">
                 <BiLogOut className="o-icon" />
-                <a onClick={() => setActive("FourthTable")}>LOGOUT</a>
+                <a  onClick={() => setActive("FourthTable")}>
+                  LOGOUT
+                </a>
               </p>
+              
             </div>
           </div>
         </div>
       </div>
-      {active === "FirstTable" && <DashboardCont />}
-      {active === "SecondTable" && <Employees />}
-      {/* {active === "ThirdTable" && <Payroll />} */}
-      {active === "FourthTable" && <Deductions />}
-      {active === "FifthTable" && <Position />}
+      {active === "FirstTable" && <StaffAttendance />}
+      {active === "SecondTable" && <Payslip/>}
+     
     </div>
     // side navbar end
   );

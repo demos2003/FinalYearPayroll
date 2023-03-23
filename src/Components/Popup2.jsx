@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Popup1.css"
+import "./CSS/Popup1.css"
 
 function Popup2(props) {
   return (props.trigger) ? (

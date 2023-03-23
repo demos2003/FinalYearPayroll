@@ -1,4 +1,4 @@
-import './App.css';
+import './CSS/App.css';
 import React from 'react';
 import { VictoryPie } from 'victory';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -6,14 +6,14 @@ import LongBtn from './Long-btn';
 import LeaveAbs from '../Components/LeaveAbs';
 import { LeaveAbsHold } from '../Components/LeaveAbsHold';
 
-import './Attendance.css'
+import './CSS/Attendance.css'
 
 function Attendance(){
     return(
         <div className=''>
           <h1 className='active_pagehead'>ATTENDANCE</h1>
             <div className='table-holder attendance_table-holder'>
-            {/* <Searchbar/>  */}
+           
                     <table class="table table-bordered table-width attendance_table">
   <thead>
     <tr>

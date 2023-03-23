@@ -158,18 +158,11 @@ link1:active{
     border-radius: 0 0 10px 10px;
 }
 
-/* .table-width{
-  position: relative;
-  top: 30px;
-   } */
-
 .table-holder{
-    /* padding: 20px;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
-    position: relative;
+    /* position: relative;
     top: 70px;
-    left: 54px;
+    left: 54px; */
+    margin-left: 50px;
 
 }
 
@@ -254,10 +247,10 @@ Svg{
 }
 .AddEmployee{
     float: right;
-    margin-right: 10%;
     margin-top: 10px;
     background-color: white;
     border: 1px solid rgb(205, 203, 203);
+    margin-bottom: 10px;
 }
 .add-icon{
     color: black !important;

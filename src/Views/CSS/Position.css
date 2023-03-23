@@ -4,7 +4,7 @@
 
 
 .active_pagehead{
-    position: relative;
-    left: 60px;
-    top: 50px;
+   
+    z-index: -1;
+    margin-left: 50px;
 }

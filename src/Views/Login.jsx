@@ -1,9 +1,9 @@
 
-import './App.css';
+import './CSS/App.css';
 import React from 'react';
-// import 'bootstrap/dist/css/bootstrap.css';
 import { Button,  Form } from "react-bootstrap";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
+import { Link } from 'react-router-dom';
 
 function Login(){
     return(
@@ -26,6 +26,7 @@ function Login(){
   </label>
   
   <input type="submit" value="Sign in" className="signin-btn" />
+  <p>Are you an User ? <Link to="/UserLogin">User Login</Link></p>
 
 </form>
     </div>

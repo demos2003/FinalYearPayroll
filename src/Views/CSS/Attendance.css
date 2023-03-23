@@ -6,8 +6,8 @@
 
 
 .attendance_table-holder {
-    height: 290px;
-    width: 1000px;
+    width: 950px;
+    z-index: -1;
 }
 
 
@@ -43,12 +43,15 @@
 
 
 .leave-card {
-    width: 500px;
+    width: 1100px;
     background-color: white;
     margin-right: 2%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 10px;
     height: 500px;
+    margin-left: 40px;
+    margin-top: 70px;
+    
 }
 
 .leave-comp {
@@ -58,6 +61,7 @@
     border-radius: 8px;
     display: flex;
     flex-direction: row;
+    
 
 
 
