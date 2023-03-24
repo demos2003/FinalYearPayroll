@@ -12,12 +12,17 @@ import { MdArrowDropDown } from "react-icons/md";
 import { StaffAttendance } from '../Components/StaffAttendance';
 import { Payslip } from '../Components/Payslip';
 import { BiLogOut } from "react-icons/bi"
+import StaffLogOut from '../Components/StaffLogOut';
 
-export const UserHomepage = () => {
+
+export const UserHomepage = ({employee}) => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
 
    
   // api consumption begin
   const [active, setActive] = useState("FirstTable");
+  
  return (
     <div className="admin-holder">
       {/* bootsrap link */}
@@ -34,19 +39,14 @@ export const UserHomepage = () => {
               <h5 style={{color:"white"}}>USER PANEL</h5>
               </div>
               <Avatar src="/broken-image.jpg" />
+              
               <div className="dropdown">
                 {/* logout and change password drop down */}
                 <div className="logout-dropdown">
                   <p className='user-name'>
-                    DEMILADE
-                    <MdArrowDropDown className="aIcon-pos" />
+                   {employee.user.name}
+                    
                   </p>
-                </div>
-                <div className="dropdown-content">
-                  {/* <a  onClick={handleLogout}>
-                    {user && "Logout"}
-                  </a> */}
-                  {/* <PasswordChange id={user._id} /> */}
                 </div>
               </div>
             </div>
@@ -73,16 +73,16 @@ export const UserHomepage = () => {
               </p>
               <p className="option">
                 <BiLogOut className="o-icon" />
-                <a  onClick={() => setActive("FourthTable")}>
-                  LOGOUT
-                </a>
+                <a onClick={handleOpen}>LOGOUT</a>
+                 
               </p>
-              
+              {/* <StaffLogOut open1={open1} setOpen1={setOpen1}/>  */}
+              <StaffLogOut open={open} setOpen={setOpen}/>
             </div>
           </div>
         </div>
       </div>
-      {active === "FirstTable" && <StaffAttendance />}
+      {active === "FirstTable" && <StaffAttendance employee={employee} />}
       {active === "SecondTable" && <Payslip/>}
      
     </div>

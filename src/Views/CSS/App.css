@@ -5,8 +5,8 @@
     margin-right:30%; */
     margin: auto;
     margin-top: 15%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
+    border-radius: 10px;
     background-color:#F5F5F5
 }
 
@@ -163,6 +163,7 @@ link1:active{
     top: 70px;
     left: 54px; */
     margin-left: 50px;
+    z-index: 0;
 
 }
 

@@ -13,6 +13,7 @@ export const LeaveAbsHold = () => {
        <LeaveAbs/>
        <LeaveAbs/>
        <LeaveAbs/>
+      
     
      </div>
     </div>

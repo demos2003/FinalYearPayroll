@@ -15,10 +15,35 @@ import Deductions from "./Deductions";
 import Position from "./Positions";
 import Employees from "./Employees";
 import { BiLogOut } from "react-icons/bi";
+import config from "../config";
+import axios from "axios";
+import { adminContext } from "../Context/Context";
+import LogOutModal from "../Components/LogOutModal";
 
-export const Dashboard = () => {
+export const Dashboard = ({ admin }) => {
   // api consumption begin
   const [active, setActive] = useState("FirstTable");
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+
+  const [adminName, getAdminName] = useState([]);
+  useEffect(() => {
+    const fetchAdmin = async () => {
+      const res = await axios.get(`${config.baseURL}/admin`)
+       getAdminName(res.data);
+      //  console.log(res.data)
+    };
+    fetchAdmin();
+  }, []);
+
+  // console.log(admin);
+  // console.log(admin.admin.name);
+
+
+
+  
+   
+
   return (
     <div className="admin-holder">
       {/* bootsrap link */}
@@ -38,17 +63,11 @@ export const Dashboard = () => {
               <div className="dropdown">
                 {/* logout and change password drop down */}
                 <div className="logout-dropdown">
-                  <p className="user-name">
-                    DEMILADE
-                    <MdArrowDropDown className="aIcon-pos" />
+                  <p className="user-name" >
+                  <p style={{textAlign:"center", marginRight:25}}>{admin.admin.name}</p>
                   </p>
                 </div>
-                <div className="dropdown-content">
-                  {/* <a  onClick={handleLogout}>
-                    {user && "Logout"}
-                  </a> */}
-                  {/* <PasswordChange id={user._id} /> */}
-                </div>
+                
               </div>
             </div>
             <hr></hr>
@@ -68,15 +87,15 @@ export const Dashboard = () => {
               </p>
               <p className="option">
                 <BiLogOut className="o-icon" />
-                <a onClick={() => setActive("FourthTable")}>LOGOUT</a>
+                <a onClick={handleOpen}>LOGOUT</a>
               </p>
+              <LogOutModal open={open} setOpen={setOpen}/> 
             </div>
           </div>
         </div>
       </div>
       {active === "FirstTable" && <DashboardCont />}
       {active === "SecondTable" && <Employees />}
-      {/* {active === "ThirdTable" && <Payroll />} */}
       {active === "FourthTable" && <Deductions />}
       {active === "FifthTable" && <Position />}
     </div>

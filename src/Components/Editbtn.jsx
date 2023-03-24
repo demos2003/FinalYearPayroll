@@ -56,12 +56,12 @@ function Editbtn(){
               <option>Others</option>
             </select>
         </div>
-        <div class="input-group mb-3 mt-2">
+        {/* <div class="input-group mb-3 mt-2">
           <div class="custom-file">
             <label>Photo</label><br></br>
             <input type="file" class="custom-file-input" id="inputGroupFile01"></input>
           </div>
-        </div>
+        </div> */}
         </div>
         <button type="submit" class="btn btn-primary save-btn">Save</button>
       </form>

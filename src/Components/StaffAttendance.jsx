@@ -3,12 +3,12 @@ import "./CSS/StaffAttendance.css";
 import { useState, useEffect } from "react";
 import { AttendancePopUp } from "./AttendancePopUp";
 
-export const StaffAttendance = () => {
+export const StaffAttendance = ( {employee}) => {
   return (
     <div style={{ marginTop: 100, marginLeft: 130 }}>
       <div>
         <h1>Take Attendance</h1>
-        <DisabledForm />
+        <DisabledForm employee={employee}/>
       </div>
     </div>
   );
@@ -97,38 +97,31 @@ function Location() {
   );
 }
 
-const DisabledForm = ({ name, employeeId, time, day, location }) => {
+const DisabledForm = ({ name, employeeId, time, day, location, employee}) => {
   const [takeAttendance, setTakeAttendance] = useState(false);
   return (
     <form action="#" className="formb">
       <div className="form">
-        <div className="form-item">
-          <label htmlFor="bookName" className="label-width">
+      <div className="form-item">
+          <label htmlFor="year" className="label-width">
             Name
           </label>
           <br />
-          <input
-            type="text"
-            id="bookName"
-            placeholder="The Great Gatsby"
-            value={name}
-            disabled
-            // onChange={(e) => setTitle(e.target.value)}
-          />
+          <div className="valueHolder">
+            
+            {employee.user.name}
+           
+          </div>
         </div>
         <div className="form-item">
-          <label htmlFor="authorName" className="label-width">
+          <label htmlFor="year" className="label-width">
             Employee ID
           </label>
           <br />
-          <input
-            type="text"
-            id="authorName"
-            placeholder="Nasiru Iyidemilade Halim"
-            value={employeeId}
-            disabled
-            // onChange={(e) => setAuthor(e.target.value)}
-          />
+          <div className="valueHolder">
+            {employee.user._id}
+           
+          </div>
         </div>
         <div className="form-item">
           <label htmlFor="year" className="label-width">
