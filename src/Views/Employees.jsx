@@ -8,6 +8,9 @@ import Popup1 from "../Components/Popup1";
 import axios from "axios";
 import config from "../config";
 
+/**
+* Creates a component that allows to interact with Employees. Example. const employment = require ('employment')
+*/
 function Employees() {
   const [buttonPopup2, setBP2] = useState(false);
 
@@ -20,10 +23,18 @@ function Employees() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
+  const [positonId, getPositionId] = useState([]);
+  useEffect(() => {
 
+    const fetchpositonData = async () => {
+      const res = await axios.get(`${config.baseURL}/position`);
+      getPositionId(res.data);
+    };
+    fetchpositonData();
+
+  }, [])
   const handleSubmit = async (e) => {
-    e.prevent.Default();
-    setError(false);
+    e.preventDefault();
     try {
       const res = await axios.post(`${config.baseURL}/auth/register/employee`, {
         name,
@@ -32,33 +43,12 @@ function Employees() {
         sex,
         position,
         email,
-        password,
+        password
       });
       res.data && window.location.reload();
     } catch (err) {
-      setError(true);
     }
   };
-
-  const [positonId, getPositionId] = useState([]);
-  useEffect(() => {
-    
-    const fetchpositonData = async () => {
-      const res = await axios.get(`${config.baseURL}/position`);
-      getPositionId(res.data);
-    };
-    fetchpositonData();
-
-  }, [])
-
-  // console.log(positonId);
-
-  
- 
-
-  
-
-
 
   return (
     <div>
@@ -75,80 +65,80 @@ function Employees() {
         >
           <form onSubmit={handleSubmit}>
             <h2>Add Employee </h2>
-            <div class="form-row">
-              <div class="form-group form-edit">
-                <label for="inputEmail4">Name</label>
+            <div className="form-row">
+              <div className="form-group form-edit">
+                <label htmlFor="inputEmail4">Name</label>
                 <input
                   type="text"
-                  class="form-control input-edit"
+                  className="form-control input-edit"
                   id="inputAddress"
                   placeholder="First Name"
                   onChange={(e) => setName(e.target.value)}
-                ></input>
+                />
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group form-edit">
-                <label for="inputEmail4">Address</label>
+            <div className="form-row">
+              <div className="form-group form-edit">
+                <label htmlFor="inputEmail4">Address</label>
                 <input
                   type="text"
-                  class="form-control input-edit"
+                  className="form-control input-edit"
                   id="inputAddress"
                   placeholder="1 magodo brooks estate, Lagos Nigeria"
                   onChange={(e) => setAddress(e.target.value)}
-                ></input>
+                />
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group form-edit">
-                <label for="inputEmail4">Email</label>
+            <div className="form-row">
+              <div className="form-group form-edit">
+                <label htmlFor="inputEmail4">Email</label>
                 <input
                   type="email"
-                  class="form-control input-edit"
+                  className="form-control input-edit"
                   id="inputAddress"
                   placeholder="ladenas155@gmail.com"
                   onChange={(e) => setEmail(e.target.value)}
-                ></input>
+                />
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group form-edit">
-                <label for="inputEmail4">Phone Number</label>
+            <div className="form-row">
+              <div className="form-group form-edit">
+                <label htmlFor="inputEmail4">Phone Number</label>
                 <input
                   type="text"
-                  class="form-control input-edit"
+                  className="form-control input-edit"
                   id="inputAddress"
                   placeholder="08188102756"
                   onChange={(e) => setPhoneNo(e.target.value)}
-                ></input>
+                />
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group form-edit">
-                <label for="inputEmail4">Password</label>
+            <div className="form-row">
+              <div className="form-group form-edit">
+                <label htmlFor="inputEmail4">Password</label>
                 <input
                   type="password"
-                  class="form-control input-edit"
+                  className="form-control input-edit"
                   id="inputAddress"
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
-                ></input>
+                />
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group ">
-                <label for="inputState">Gender</label>
-                <select id="sex" class="form-control" onChange={(e) => setSex(e.target.value)}>
+            <div className="form-row">
+              <div className="form-group ">
+                <label htmlFor="inputState">Gender</label>
+                <select id="sex" className="form-control" onChange={(e) => setSex(e.target.value)}>
 
                   <option value="selectgender">--Select a Category--</option>
-                   <option value="male">male</option>
-                   <option value="female">female</option>
-                
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+
                 </select>
               </div>
-              <div class="form-group">
-                <label for="inputState">Position</label>
-                <select id="inputState" class="form-control" onChange={(e) => setPosition(e.target.value)}>
+              <div className="form-group">
+                <label htmlFor="inputState">Position</label>
+                <select id="inputState" className="form-control" onChange={(e) => setPosition(e.target.value)}>
 
                   <option value="selectuser">--Select a Category--</option>
                   {positonId.map((item) => (
@@ -158,14 +148,14 @@ function Employees() {
                 </select>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary save-btn">
+            <button type="submit" className="btn btn-primary save-btn">
               Save
             </button>
           </form>
-        
+
         </Popup1>
         <h1 style={{ marginTop: 50 }}>EMPLOYEES</h1>
-        <table class="table table-bordered table-width table-width2">
+        <table className="table table-bordered table-width table-width2">
           <thead>
             <tr>
               <th scope="col">Employee ID</th>
@@ -213,7 +203,7 @@ function Employees() {
       <div className="attendTable" style={{ marginTop: 100 }}>
         <h1 className="active_pagehead">ATTENDANCE</h1>
         <div className="table-holder attendance_table-holder">
-          <table class="table table-bordered table-width attendance_table">
+          <table className="table table-bordered table-width attendance_table">
             <thead>
               <tr>
                 <th scope="col">Employee ID</th>

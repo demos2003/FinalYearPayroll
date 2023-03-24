@@ -30,7 +30,7 @@ export const Dashboard = ({ admin }) => {
   useEffect(() => {
     const fetchAdmin = async () => {
       const res = await axios.get(`${config.baseURL}/admin`)
-       getAdminName(res.data);
+      getAdminName(res.data);
       //  console.log(res.data)
     };
     fetchAdmin();
@@ -41,8 +41,8 @@ export const Dashboard = ({ admin }) => {
 
 
 
-  
-   
+
+
 
   return (
     <div className="admin-holder">
@@ -63,11 +63,11 @@ export const Dashboard = ({ admin }) => {
               <div className="dropdown">
                 {/* logout and change password drop down */}
                 <div className="logout-dropdown">
-                  <p className="user-name" >
-                  <p style={{textAlign:"center", marginRight:25}}>{admin.admin.name}</p>
-                  </p>
+                  <div className="user-name" >
+                    <p style={{ textAlign: "center", marginRight: 25 }}>{admin.admin.name}</p>
+                  </div>
                 </div>
-                
+
               </div>
             </div>
             <hr></hr>
@@ -89,7 +89,7 @@ export const Dashboard = ({ admin }) => {
                 <BiLogOut className="o-icon" />
                 <a onClick={handleOpen}>LOGOUT</a>
               </p>
-              <LogOutModal open={open} setOpen={setOpen}/> 
+              <LogOutModal open={open} setOpen={setOpen} />
             </div>
           </div>
         </div>

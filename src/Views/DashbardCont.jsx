@@ -71,70 +71,70 @@ function DashboardCont() {
           <Popup1 trigger={buttonPopup2} setTrigger={setBP2}>
             <form>
               <h2>Add Employee </h2>
-              <div class="form-row">
-                <div class="form-group form-edit">
+              <div className="form-row">
+                <div className="form-group form-edit">
                   <label for="inputEmail4">Name</label>
                   <input
                     type="text"
-                    class="form-control input-edit"
+                    className="form-control input-edit"
                     id="inputAddress"
                     placeholder="First Name"
                   ></input>
                 </div>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label for="inputAddress">Position</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="inputAddress"
                   placeholder="1234 Main St"
                 ></input>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label for="inputAddress2">Schedule</label>
                 <input
                   type="number"
-                  class="form-control"
+                  className="form-control"
                   id="inputAddress2"
                 ></input>
               </div>
-              <div class="form-row">
-                <div class="form-group ">
+              <div className="form-row">
+                <div className="form-group ">
                   <label for="inputState">Gender</label>
-                  <select id="inputState" class="form-control">
+                  <select id="inputState" className="form-control">
                     <option selected>Male</option>
                     <option>Female</option>
                     <option>Others</option>
                   </select>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="inputState">Position</label>
-                  <select id="inputState" class="form-control">
+                  <select id="inputState" className="form-control">
                     <option selected>UI Designer</option>
                     <option>Developer</option>
                     <option>Tester</option>
                     <option>Others</option>
                   </select>
                 </div>
-                <div class="input-group mb-3 mt-2">
-                  <div class="custom-file">
+                <div className="input-group mb-3 mt-2">
+                  <div className="custom-file">
                     <label>Photo</label>
                     <br></br>
                     <input
                       type="file"
-                      class="custom-file-input"
+                      className="custom-file-input"
                       id="inputGroupFile01"
                     ></input>
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary save-btn">
+              <button type="submit" className="btn btn-primary save-btn">
                 Save
               </button>
             </form>
           </Popup1>
-          <table class="table table-bordered table-width employess_table">
+          <table className="table table-bordered table-width employess_table">
             <thead>
               <tr>
                 <th scope="col">Employee ID</th>

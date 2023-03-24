@@ -1,6 +1,5 @@
 import "./CSS/App.css";
 import React from "react";
-import { VictoryPie } from "victory";
 import "bootstrap/dist/css/bootstrap.css";
 import LongBtn from "./Long-btn";
 import LeaveAbs from "../Components/LeaveAbs";
@@ -58,17 +57,7 @@ function Attendance() {
           <p className="card-font">Attendance Charts</p>
           <hr></hr>
           <div>
-            <VictoryPie
-              animate={{
-                duration: 2000,
-              }}
-              colorScale={["Green", "Red", "Orange"]}
-              data={[
-                { x: "Present", y: 80 },
-                { x: "Absent", y: 5 },
-                { x: "Late", y: 15 },
-              ]}
-            />
+
           </div>
         </div>
         {/* <div className='leave-card'>
