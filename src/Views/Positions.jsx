@@ -6,6 +6,7 @@ import "./CSS/Position.css";
 import { PopUp3 } from "./PopUp3";
 import axios from "axios";
 import config from "../config";
+import PositionTable from "../Components/PositionTable";
 
 function Position() {
   const [name, setNewName] = useState("")
@@ -13,18 +14,28 @@ function Position() {
   const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.prevent.Default();
-    setError(false);
+    e.preventDefault();
     try {
       const res = await axios.post(`${config.baseURL}/position`, {
         name,
-        pay
+        pay,
       });
       res.data && window.location.reload();
     } catch (err) {
-      setError(true);
     }
   };
+
+
+  const [positonId, getPositionId] = useState([]);
+  useEffect(() => {
+
+    const fetchpositonData = async () => {
+      const res = await axios.get(`${config.baseURL}/position`);
+      getPositionId(res.data);
+    };
+    fetchpositonData();
+
+  }, [])
 
 
 
@@ -37,7 +48,7 @@ function Position() {
         Add
       </button>
       <PopUp3 trigger={addPopUp} setTrigger={setAddPopUp} handleSubmit={handleSubmit}>
-        <form handleSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
         <div class="form-row">
           <div class="form-group form-edit">
             <label for="inputEmail4">Position Title</label>
@@ -59,42 +70,27 @@ function Position() {
               onChange={(e) => setPay(e.target.value)}
             ></input>
           </div>
+          <button type="submit" className="btn btn-primary save-btn">
+              Save
+            </button>
         </div>
         </form>
       </PopUp3>
       <div className="table-holder table-holder3">
-        <table class="table table-bordered postion-table table-striped">
+        <table className="table table-bordered postion-table table-striped">
           <thead>
             <tr>
-              <th scope="col">Position Title</th>
-              <th scope="col">Rate PER Hour (#)</th>
-              <th scope="col">Tools</th>
+              <th scope="col" className="content-holder">Position Title</th>
+              <th scope="col" className="content-holder">Rate PER Hour (#)</th>
+              <th scope="col" className="content-holder">Tools</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Programmer</th>
-              <td>100.00</td>
-              <td>
-                <PositionBtn />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Senior Developer</th>
-              <td>300.00</td>
-              <td>
-                <PositionBtn />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Ui Designer</th>
-              <td>100.00</td>
-              <td>
-                <PositionBtn />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+         </table>
+         {
+            positonId.map((item) => (
+              <PositionTable item={item}/>
+            ))
+          }
         <div className="pos-longBtn">
           <LongBtn />
         </div>

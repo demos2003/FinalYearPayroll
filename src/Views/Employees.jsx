@@ -7,10 +7,8 @@ import { useState } from "react";
 import Popup1 from "../Components/Popup1";
 import axios from "axios";
 import config from "../config";
+import EmployeesTable from "../Components/EmployeesTable";
 
-/**
-* Creates a component that allows to interact with Employees. Example. const employment = require ('employment')
-*/
 function Employees() {
   const [buttonPopup2, setBP2] = useState(false);
 
@@ -25,14 +23,23 @@ function Employees() {
 
   const [positonId, getPositionId] = useState([]);
   useEffect(() => {
-
     const fetchpositonData = async () => {
       const res = await axios.get(`${config.baseURL}/position`);
       getPositionId(res.data);
     };
     fetchpositonData();
+  }, []);
 
-  }, [])
+  const [employee, getEmployee] = useState([]);
+  useEffect(() => {
+    const fetchEmployee = async () => {
+      const res = await axios.get(`${config.baseURL}/employee`);
+      getEmployee(res.data);
+    }
+    fetchEmployee();
+  }, []);
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -43,11 +50,10 @@ function Employees() {
         sex,
         position,
         email,
-        password
+        password,
       });
       res.data && window.location.reload();
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   return (
@@ -128,21 +134,28 @@ function Employees() {
             <div className="form-row">
               <div className="form-group ">
                 <label htmlFor="inputState">Gender</label>
-                <select id="sex" className="form-control" onChange={(e) => setSex(e.target.value)}>
-
+                <select
+                  id="sex"
+                  className="form-control"
+                  onChange={(e) => setSex(e.target.value)}
+                >
                   <option value="selectgender">--Select a Category--</option>
                   <option value="male">male</option>
                   <option value="female">female</option>
-
                 </select>
               </div>
               <div className="form-group">
                 <label htmlFor="inputState">Position</label>
-                <select id="inputState" className="form-control" onChange={(e) => setPosition(e.target.value)}>
-
+                <select
+                  id="inputState"
+                  className="form-control"
+                  onChange={(e) => setPosition(e.target.value)}
+                >
                   <option value="selectuser">--Select a Category--</option>
                   {positonId.map((item) => (
-                    <option value={item._id} key={item._id}>{item.name}</option>
+                    <option value={item._id} key={item._id}>
+                      {item.name}
+                    </option>
                   ))}
                   <option>Others</option>
                 </select>
@@ -152,7 +165,6 @@ function Employees() {
               Save
             </button>
           </form>
-
         </Popup1>
         <h1 style={{ marginTop: 50 }}>EMPLOYEES</h1>
         <table className="table table-bordered table-width table-width2">
@@ -160,45 +172,17 @@ function Employees() {
             <tr>
               <th scope="col">Employee ID</th>
               <th scope="col">Name</th>
-              {/* <th scope="col">Sign In </th>
-              <th scope="col">Sign Out</th> */}
               <th scope="col">Position</th>
               <th scope="col">Controls</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">ABC1234657</th>
-              <td>Ugo Justice</td>
-              <td>UI designer</td>
-              {/* <td>08:00 AM - 05:00 PM</td> */}
-              {/* <td>2019</td> */}
-              <td>
-                <Editbtn />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">ABC1234657</th>
-              <td>Ugo Justice</td>
-              <td>Senior</td>
-              {/* <td>Remote</td> */}
-              {/* <td>2019</td> */}
-              <td>
-                <Editbtn />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">ABC1234657</th>
-              <td>Ugo Justice</td>
-              <td>Senior</td>
-              {/* <td>Remote</td> */}
-              {/* <td>2019</td> */}
-              <td>
-                <Editbtn />
-              </td>
-            </tr>
-          </tbody>
         </table>
+        {
+          employee.map((emp) => (
+            <EmployeesTable emp={emp}/>
+          ))
+        }
+        
       </div>
       <div className="attendTable" style={{ marginTop: 100 }}>
         <h1 className="active_pagehead">ATTENDANCE</h1>
