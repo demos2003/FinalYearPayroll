@@ -293,11 +293,7 @@ Svg{
     font-weight: bolder;
 }
 
-.mini-info{
-    border-bottom: 1px solid grey;
-    display: flex;
-    margin-top: 10px;
-}
+
 
 .staff-left{
     width: 25%;
@@ -309,8 +305,8 @@ Svg{
 }
 
 .icon-pos2{
-    position: relative;
-    top: 5px !important;
+   
+   
     color: black !important;
 }
 

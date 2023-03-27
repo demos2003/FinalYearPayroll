@@ -53,8 +53,8 @@ function PositionBtn({ positionItem }) {
           }} className="edit-btn">
           <Svg2></Svg2>
         </a>
-        <Popup1 trigger={buttonPopup3} setTrigger={setBP3}>
-          <form>
+        <Popup1 trigger={buttonPopup3} setTrigger={setBP3} >
+          <form >
             <h2>Edit Position</h2>
             <div class="form-row">
               <div class="form-group form-edit">

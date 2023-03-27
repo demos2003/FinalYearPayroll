@@ -35,11 +35,12 @@ function Employees() {
     const fetchEmployee = async () => {
       const res = await axios.get(`${config.baseURL}/employee`);
       getEmployee(res.data);
-    }
+    };
     fetchEmployee();
   }, []);
 
-  
+  console.log(employee);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -55,6 +56,8 @@ function Employees() {
       res.data && window.location.reload();
     } catch (err) {}
   };
+
+  console.log(positonId)
 
   return (
     <div>
@@ -177,12 +180,9 @@ function Employees() {
             </tr>
           </thead>
         </table>
-        {
-          employee.map((emp) => (
-            <EmployeesTable emp={emp}/>
-          ))
-        }
-        
+        {employee.map((emp) => (
+          <EmployeesTable emp={emp} key={emp._id} positonId={positonId} />
+        ))}
       </div>
       <div className="attendTable" style={{ marginTop: 100 }}>
         <h1 className="active_pagehead">ATTENDANCE</h1>
