@@ -18,13 +18,11 @@ import {
   adminContext,
 } from "./Context/Context";
 import { useContext } from "react";
-import { useState } from "react";
 
 export default function App() {
-  const { employee } = useContext(employeeContext);
+  let { employee } = useContext(employeeContext);
   const { admin } = useContext(adminContext);
 
-    
   if (!employee) {
     employee = "";
   }
