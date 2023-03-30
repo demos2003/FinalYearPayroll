@@ -56,24 +56,32 @@
     width: 130px;
     height: 60px;
     margin-left: 15px;
+    text-align: center;
+
 }
 .infoTags1{
     background-color: aquamarine;
     width: 130px;
     height: 60px;
     margin-left: 15px;
+    text-align: center;
+    color: grey;
+
 }
 .infoTags2{
     background-color: darksalmon;
     width: 130px;
     height: 60px;
     margin-left: 15px;
+    text-align: center;
+
 }
 .infoTags3{
     background-color: lightgreen;
     width: 130px;
     height: 60px;
     margin-left: 15px;
+    text-align: center;
 }
 
 .paySlipPage{
@@ -104,4 +112,8 @@
     height: 45px;
    
     
+}
+
+.dateName{
+    color: darkviolet;
 }

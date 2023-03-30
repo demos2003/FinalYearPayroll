@@ -19,6 +19,7 @@ import config from "../config";
 import axios from "axios";
 import { adminContext } from "../Context/Context";
 import LogOutModal from "../Components/LogOutModal";
+import ViewAttendance from "./ViewAttendance";
 
 export const Dashboard = ({ admin }) => {
   // api consumption begin
@@ -73,19 +74,24 @@ export const Dashboard = ({ admin }) => {
             <hr></hr>
             {/* side navbar begins */}
             <div className="options">
-              <p className="option">
+              <p className={`option ${active === "FirstTable" ? "active" : ""}`} style={{cursor:'pointer'}}>
                 <AiOutlineHome className="o-icon" />
                 <a onClick={() => setActive("FirstTable")}>DASHBOARD</a>
               </p>
-              <p className="option">
-                <AiOutlineTable className="o-icon" />
-                <a onClick={() => setActive("SecondTable")}>ATTENDANCE</a>
+              <p className={`option ${active === "FourthTable" ? "active" : ""}`} style={{cursor:'pointer'}}>
+                <BsPersonSquare className="o-icon" />
+                <a onClick={() => setActive("FourthTable")}>ATTENDANCE</a>
               </p>
-              <p className="option">
+              <p className={`option ${active === "SecondTable" ? "active" : ""}`} style={{cursor:'pointer'}}>
+                <AiOutlineTable className="o-icon" />
+                <a onClick={() => setActive("SecondTable")}>EMPLOYEES</a>
+              </p>
+              <p className={`option ${active === "FifthTable" ? "active" : ""}`} style={{cursor:'pointer'}}> 
                 <BsPersonSquare className="o-icon" />
                 <a onClick={() => setActive("FifthTable")}>POSITIONS</a>
               </p>
-              <p className="option">
+           
+              <p className="option" style={{cursor:'pointer'}}>
                 <BiLogOut className="o-icon" />
                 <a onClick={handleOpen}>LOGOUT</a>
               </p>
@@ -96,9 +102,8 @@ export const Dashboard = ({ admin }) => {
       </div>
       {active === "FirstTable" && <DashboardCont />}
       {active === "SecondTable" && <Employees />}
-      {active === "FourthTable" && <Deductions />}
+      {active === "FourthTable" && <ViewAttendance />}
       {active === "FifthTable" && <Position />}
     </div>
-    // side navbar end
   );
 };

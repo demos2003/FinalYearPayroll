@@ -62,11 +62,9 @@ function Employees() {
   return (
     <div>
       {/* <Header/> */}
+  <div className="employeeHolder">
       <div className="table-holder">
-        <button className="AddEmployee" onClick={() => setBP2(true)}>
-          Add
-          <AiOutlineUserAdd className="add-icon" />
-        </button>
+      
         <Popup1
           handleSubmit={handleSubmit}
           trigger={buttonPopup2}
@@ -169,51 +167,27 @@ function Employees() {
             </button>
           </form>
         </Popup1>
+        <div style={{width:990, height:555}}>
         <h1 style={{ marginTop: 50 }}>EMPLOYEES</h1>
-        <table className="table table-bordered table-width table-width2">
-          <thead>
-            <tr>
-              <th scope="col">Employee ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Position</th>
-              <th scope="col">Controls</th>
+        <table className="table table-bordered tableWidth attendance_table-holder">
+          <thead className="tableWidth">
+            <tr className="tableWidth">
+              <th scope="col" className="columnWidth">Employee ID</th>
+              <th scope="col" className="columnWidth">Name</th>
+              <th scope="col" className="columnWidth">Position</th>
+              <th scope="col" className="columnWidth">Controls</th>
             </tr>
           </thead>
         </table>
         {employee.map((emp) => (
           <EmployeesTable emp={emp} key={emp._id} positonId={positonId} />
         ))}
-      </div>
-      <div className="attendTable" style={{ marginTop: 100 }}>
-        <h1 className="active_pagehead">ATTENDANCE</h1>
-        <div className="table-holder attendance_table-holder">
-          <table className="table table-bordered table-width attendance_table">
-            <thead>
-              <tr>
-                <th scope="col">Employee ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Time in</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>ABC1234657</td>
-                <td>Ugo Justice</td>
-                <td>01:30 AM</td>
-              </tr>
-              <tr>
-                <td>ABDA124865</td>
-                <td>Nasiru Iyidemilade</td>
-                <td>02:40 PM</td>
-              </tr>
-              <tr>
-                <td>ADCTDB$@#</td>
-                <td>Micheal Jackson</td>
-                <td>03:45 PM</td>
-              </tr>
-            </tbody>
-          </table>
+          <button className="AddEmployee" onClick={() => setBP2(true)}>
+          Add
+          {/* <AiOutlineUserAdd className="add-icon" /> */}
+        </button>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -5,12 +5,12 @@ import PositionBtn from "../Components/PositionBtn";
 
 const PositionTable = ({item}) => {
   return (
-    <div className="table-holder3">
-      <table  className="table table-bordered table-width fixed ">
+    <div className="">
+      <table  className="table table-bordered tableWidth fixed ">
         <tbody>
           <tr >
-            <td ><div className="content-holder bold">{item.name.toUpperCase()}</div></td>
-            <td ><div className="content-holder">{item.pay}</div></td>
+            <td className="columnWidth2"><div >{item.name.toUpperCase()}</div></td>
+            <td className="columnWidth2"><div >{item.pay}</div></td>
            
             <td >
             <div className="content-holder">

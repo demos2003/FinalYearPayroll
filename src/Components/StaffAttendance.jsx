@@ -3,12 +3,12 @@ import "./CSS/StaffAttendance.css";
 import { useState, useEffect } from "react";
 import { AttendancePopUp } from "./AttendancePopUp";
 
-export const StaffAttendance = ( {employee}) => {
+export const StaffAttendance = ({ employee }) => {
   return (
     <div style={{ marginTop: 100, marginLeft: 130 }}>
       <div>
         <h1>Take Attendance</h1>
-        <DisabledForm employee={employee}/>
+        <DisabledForm employee={employee} />
       </div>
     </div>
   );
@@ -97,31 +97,24 @@ function Location() {
   );
 }
 
-const DisabledForm = ({ name, employeeId, time, day, location, employee}) => {
+const DisabledForm = ({ name, employeeId, time, day, location, employee }) => {
   const [takeAttendance, setTakeAttendance] = useState(false);
   return (
     <form action="#" className="formb">
       <div className="form">
-      <div className="form-item">
+        <div className="form-item">
           <label htmlFor="year" className="label-width">
             Name
           </label>
           <br />
-          <div className="valueHolder">
-            
-            {employee.user.name}
-           
-          </div>
+          <div className="valueHolder">{employee.name}</div>
         </div>
         <div className="form-item">
           <label htmlFor="year" className="label-width">
             Employee ID
           </label>
           <br />
-          <div className="valueHolder">
-            {employee.user._id}
-           
-          </div>
+          <div className="valueHolder">{employee._id}</div>
         </div>
         <div className="form-item">
           <label htmlFor="year" className="label-width">

@@ -76,13 +76,13 @@ function Position() {
         </div>
         </form>
       </PopUp3>
-      <div className="table-holder table-holder3">
-        <table className="table table-bordered postion-table table-striped">
-          <thead>
-            <tr>
-              <th scope="col" className="content-holder">Position Title</th>
-              <th scope="col" className="content-holder">Rate PER Hour (#)</th>
-              <th scope="col" className="content-holder">Tools</th>
+      <div style={{width:990, height:555, marginLeft:50}} >
+        <table className="table table-bordered tableWidth table-striped ">
+          <thead className="tableWidth">
+            <tr className="tableWidth">
+              <th scope="col" className="columnWidth2">Position Title</th>
+              <th scope="col" className="columnWidth2">Rate PER Hour (#)</th>
+              <th scope="col" className="columnWidth2">Tools</th>
             </tr>
           </thead>
          </table>

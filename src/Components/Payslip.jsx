@@ -3,12 +3,13 @@ import "./CSS/payslip.css";
 import { BsTelephone, BsPerson } from "react-icons/bs";
 import { AiOutlineMail, AiOutlineCalendar, AiOutlineArrowRight } from "react-icons/ai"
 import { BiHomeAlt } from "react-icons/bi"
+import { color } from "@mui/system";
 
 export const Payslip = () => {
   return (
     <div className="payslipHolder">
       <div className="MonthIndicator">
-        <h5>Payslip for the period of April 2023 </h5>
+        <h5>Payslip for the period of <span className="dateName"> April 2023</span>  </h5>
       </div>
       <div className="StaffIndicator">
         <div className="ImgHolder">
@@ -19,7 +20,7 @@ export const Payslip = () => {
             <h5>Nasiru Iyidemilade Halim, 110245</h5>
           </div>
           <div className="employeePosition">
-            <h5>Developer</h5>
+            <h6 className="dateName">Developer</h6>
           </div>
           <div className="employeeTags">
             <h5>Developer</h5>
@@ -27,13 +28,35 @@ export const Payslip = () => {
         </div>
       </div>
       <div className="TagIndicator">
-        <div className="infoTags"></div>
-        <div className="infoTags1"></div>
-        <div className="infoTags"></div>
-        <div className="infoTags2"></div>
-        <div className="infoTags"></div>
-        <div className="infoTags3"></div>
-        <div className="infoTags"></div>
+        <div className="infoTags">
+          <h5>34000.00</h5>
+          <h6>Total Earnings</h6>
+        </div>
+        <div className="infoTags1">
+        <h5>34,000.00</h5>
+          <h6>Total Earnings</h6>
+
+        </div>
+        <div className="infoTags">
+        <h5>34,000.00</h5>
+          <h6>Total Earnings</h6>
+        </div>
+        <div className="infoTags2">
+        <h5>34,000.00</h5>
+          <h6>Total Earnings</h6>
+        </div>
+        <div className="infoTags">
+        <h5>34,000.00</h5>
+          <h6>Total Earnings</h6>
+        </div>
+        <div className="infoTags3">
+        <h5>34,000.00</h5>
+          <h6>Total Earnings</h6>
+        </div>
+        <div className="infoTags">
+        <h5>34,000.00</h5>
+          <h6>Total Earnings</h6>
+        </div>
       </div>
       <div>
         <div className="paySlipPage">

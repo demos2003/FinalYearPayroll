@@ -1,21 +1,22 @@
 import React from "react";
 import Editbtn from "./Editbtn";
 import "../Views/CSS/Position.css";
+import "../Views/CSS/Tables.css"
 
 const EmployeesTable = ({ emp, positonId }) => {
   return (
-    <div className="table-holder3">
-      <table className="table table-bordered table-width fixed ">
-        <tbody>
+    <div className="employeeContentRow">
+      <table className="table table-bordered fixed tableWidth ">
+        <tbody className="">
           <tr>
-            <td>
-              <div className="content-holder bold">{emp._id}</div>
+            <td className="columnWidth">
+              <div >{emp._id}</div>
             </td>
-            <td>
-              <div className="content-holder">{emp.name}</div>
+            <td className="columnWidth">
+              <div >{emp.name}</div>
             </td>
-            <td>
-              <div className="content-holder">{emp.position.name}</div>
+            <td className="columnWidth">
+              <div >{emp.position.name}</div>
             </td>
 
             <td>

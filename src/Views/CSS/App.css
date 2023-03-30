@@ -248,10 +248,14 @@ Svg{
 }
 .AddEmployee{
     float: right;
-    margin-top: 10px;
-    background-color: white;
+    margin-top: 20px;
+    background-color: #5D3FD3;
     border: 1px solid rgb(205, 203, 203);
     margin-bottom: 10px;
+    color: white;
+    padding: 10px;
+    width: 200px;
+    border-radius: 5px;
 }
 .add-icon{
     color: black !important;
@@ -423,3 +427,324 @@ Svg{
     width: 100%;
     border-radius: 2px;
 }
+
+.employeeHolder{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    padding: 10px;
+    margin-top: 40px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.active {
+    /* background-color: red; */
+    padding: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: #7f6ec5;
+    
+  }
+
+  .ProfilePictureContainer{
+    margin-left: 100px;
+    margin-top: 100px;
+
+  }
+
+
+  .user-settings {
+    height: 1400px;
+    margin-left: 18%;
+    padding-top: 10px;
+    /* width: 80%; */
+  }
+  .user-settings-header h4 {
+    margin-top: 2%;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  
+  .name {
+    margin-top: 2%;
+    display: flex;
+    /* width: 70%; */
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10%;
+    height: 200px;
+  }
+  .name .user-form-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 70px;
+  }
+  .name .user-form-item label {
+    font-weight: 600;
+  }
+  .name .user-form-item input {
+    width: 350px;
+    padding: 9px;
+    border-radius: 10px;
+    border-width: 1px;
+    font-size: 17px;
+  }
+  .add-new-category .add-new-category-content {
+    display: flex;
+    width: 9px;
+    justify-content: space-between;
+  }
+  .add-new-category .user-form-item label {
+    margin-top: 6%;
+    font-weight: 600;
+    margin-bottom: 0.5%;
+  }
+  .add-new-category .user-form-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .add-new-category .user-form-item input {
+    width: 350px;
+    padding: 9px;
+    border-radius: 10px;
+    border-width: 1px;
+    font-size: 17px;
+  }
+  .user-settings-line {
+    margin-top: 2%;
+    width: 95%;
+  }
+  .user-personal-info {
+    margin-top: 2%;
+  }
+  .user-personal-info-header h4 {
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .add-new-category-header h4 {
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 2%;
+  }
+  .user-settings-content form button {
+    background-color: #5D3FD3;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    margin-top: 2%;
+    cursor: pointer;
+    margin-top: 6%;
+  }
+  .update-btn-user {
+    margin-top: 2% !important;
+    width: 800px;
+    margin-left: 50px;
+  }
+  .personal-information {
+    margin-top: 100px;
+    display: flex;
+    width: 800px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+     height: 300px;
+    margin-left: 50px;
+    
+  }
+  .personal-information .user-form-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 70px;
+    margin-bottom: 2%;
+  }
+  .error-notification {
+    font-size: 20px;
+    padding-top: 1px;
+  }
+  .error-message {
+    display: flex;
+  }
+  .personal-information .user-form-item label {
+    font-weight: 600;
+  }
+  .personal-information .user-form-item input,
+  .personal-information .user-form-item select {
+    width: 350px;
+    padding: 9px;
+    border-radius: 10px;
+    border-width: 1px;
+    font-size: 17px;
+  }
+  .user-settings-line2 {
+    margin-top: 2%;
+    width: 95%;
+  }
+  .user-change-password {
+    margin-top: 2%;
+  }
+  .user-change-password h4 {
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .change-password {
+    margin-top: 2%;
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 200px;
+  }
+  .change-password .user-form-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 70px;
+  }
+  .user-change-password form button {
+    background-color: #28b498;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  .change-password .user-form-item label {
+    font-weight: 600;
+  }
+  .change-password .user-form-item input {
+    width: 350px;
+    padding: 9px;
+    border-radius: 10px;
+    border-width: 1px;
+    font-size: 17px;
+  }
+  .password-do-not-match {
+    margin-top: -2%;
+  }
+  .account-creation {
+    margin-top: -18%;
+    color: grey;
+  }
+  .user-settings-line3 {
+    width: 95%;
+    margin-top: 1%;
+  }
+  .change-password-success {
+    margin-top: -2%;
+    margin-bottom: 1%;
+  }
+  .category-table-one {
+    width: 450px;
+    height: 350px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    padding: 10px;
+    margin-top: 2%;
+  }
+  .category-table-header {
+    margin-top: -8%;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .category-del-btn {
+    color: red;
+    border: none;
+    font-size: 22px;
+  }
+  .category-name-title {
+    font-size: 15px;
+    padding: 5px;
+  }
+  .category-data {
+    overflow-y: scroll;
+    width: 430px;
+    height: 300px;
+  }
+  /* width */
+  .category-data::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .category-data::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  .category-data::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  .category-data::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  .category-container td {
+    width: 150px;
+  }
+  .category-table-title {
+    display: flex;
+    justify-content: space-around;
+  }
+  .category-table-title .category-name-container {
+    margin-left: -15%;
+    font-size: 14px;
+    color: grey;
+    margin-bottom: 2%;
+  }
+  .add-new-category-btn button {
+    background-color: #28b498;
+    color: white;
+    border-radius: 3px;
+    padding: 6px;
+    border: none;
+    cursor: pointer;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .add-new-category-btn{
+    margin-right: -10%;
+  }
+  .category-edit-btn {
+    border: none;
+    font-size: 22px;
+    padding: 0;
+  }
+  .category-edit-btn .edit, .category-del-btn .del{
+    cursor: pointer;
+  }
+  
+  .table-title {
+    padding: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+  }
+  .upload-profile-picture-header {
+    margin-bottom: 2%;
+  }
+  .upload-profile-pic .user-form-item {
+    width: 40%;
+    justify-content: space-between;
+    display: flex;
+  }
+
+  .upload-profile-pic{
+    margin-left: 50px;
+  }
+  
+  .form{
+    margin-bottom: 50px;
+  }
+
+  .addFile{
+    margin-top: 50px;
+    background-color: #5D3FD3;
+    color: white;
+    width: 120px;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+  }
+  
