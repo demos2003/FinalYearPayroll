@@ -1,11 +1,22 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import DateTimePicker from '../Components/DateTimePicker'
-
+import config from '../config';
 
 const ViewAttendance = () => {
+  const [lateness, setLateness] = useState()
+
+  useEffect(() => {
+    const fetchLateness = async () => {
+      const res = await axios.get(`${config.baseURL}/lateness`);
+      setLateness(res.data[0]);
+    };
+    fetchLateness();
+  });
+
   return (
     <div>
-         <div className="attendTable" style={{ marginTop: 100 }}>
+      <div className="attendTable" style={{ marginTop: 100 }}>
         <h1 className="active_pagehead">ATTENDANCE</h1>
         <div className="table-holder attendance_table-holder">
           <table className="table table-bordered table-width attendance_table">
@@ -35,11 +46,11 @@ const ViewAttendance = () => {
             </tbody>
           </table>
         </div>
-        <h4 style={{marginLeft:70}}>Attendance Time Picker</h4>
+        <h4 style={{ marginLeft: 70 }}>Attendance Time Picker</h4>
         <div >
-          
-            {/* <button style={{marginLeft:10, backgroundColor:"#5D3FD3", border:"none", width:70}}>Save</button> */}
-            <DateTimePicker/>
+          {lateness ? (<DateTimePicker lateness={lateness} />) : (<>Loading</>)}
+
+
 
         </div>
       </div>

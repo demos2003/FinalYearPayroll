@@ -22,7 +22,6 @@ function Editbtn({ employeeEmp, positonId }) {
   const [employee, setEmployee] = useState([]);
   const [updateMode, setUpdateMode] = useState(false);
 
-  console.log(positonId);
   useEffect(() => {
     const getEmployee = async () => {
       const res = await axios.get(`${config.baseURL}/employee/${employeeEmp}`);
@@ -42,13 +41,8 @@ function Editbtn({ employeeEmp, positonId }) {
     try {
       await axios.delete(`${config.baseURL}/employee/${employeeEmp}`);
       window.location.replace("/Dashboard");
-    } catch (err) {}
+    } catch (err) { }
   };
-
-  console.log(employee)
-  
-
-
 
   const handleUpdate = async () => {
     try {
@@ -62,7 +56,7 @@ function Editbtn({ employeeEmp, positonId }) {
         position,
       });
       window.location.reload();
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (
@@ -214,39 +208,39 @@ function Editbtn({ employeeEmp, positonId }) {
               <div className="form-group">
                 <label htmlFor="inputState">Position</label>
                 {updateMode ? (
-                   <select
-                   id="inputState"
-                   className="form-control"
-                   onChange={(e) => setPosition(e.target.value)}
-                   value={position._id}
-                 >
-                   <option value="selectuser">--Select a Category--</option>
-                   {positonId.map((item) => (
-                     <option value={item._id} key={item._id}>
-                       {item.name}
-                     </option>
-                   ))}
-                   <option>Others</option>
-                 </select>
+                  <select
+                    id="inputState"
+                    className="form-control"
+                    onChange={(e) => setPosition(e.target.value)}
+                    value={position._id}
+                  >
+                    <option value="selectuser">--Select a Category--</option>
+                    {positonId.map((item) => (
+                      <option value={item._id} key={item._id}>
+                        {item.name}
+                      </option>
+                    ))}
+                    <option>Others</option>
+                  </select>
 
-                ):(
+                ) : (
 
                   <select
-                  id="inputState"
-                  className="form-control"
-                  
-                >
-                  <option value="selectuser">--Select a Category--</option>
-                  {positonId.map((item) => (
-                    <option value={item._id} key={item._id}>
-                      {item.name}
-                    </option>
-                  ))}
-                  <option>Others</option>
-                </select>
+                    id="inputState"
+                    className="form-control"
+
+                  >
+                    <option value="selectuser">--Select a Category--</option>
+                    {positonId.map((item) => (
+                      <option value={item._id} key={item._id}>
+                        {item.name}
+                      </option>
+                    ))}
+                    <option>Others</option>
+                  </select>
 
                 )}
-               
+
               </div>
             </div>
             <button
