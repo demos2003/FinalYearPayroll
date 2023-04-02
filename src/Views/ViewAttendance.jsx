@@ -1,5 +1,5 @@
 import React from 'react'
-import TimePicker2 from '../Components/TimePicker'
+import DateTimePicker from '../Components/DateTimePicker'
 
 
 const ViewAttendance = () => {
@@ -37,9 +37,9 @@ const ViewAttendance = () => {
         </div>
         <h4 style={{marginLeft:70}}>Attendance Time Picker</h4>
         <div >
-            <TimePicker2/>
+          
             {/* <button style={{marginLeft:10, backgroundColor:"#5D3FD3", border:"none", width:70}}>Save</button> */}
-
+            <DateTimePicker/>
 
         </div>
       </div>

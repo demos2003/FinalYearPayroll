@@ -26,6 +26,8 @@ function EmployeeSettings({ employee }) {
     // password:""
   });
 
+  console.log(userInfo.position)
+
   const [file, setFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -35,6 +37,15 @@ function EmployeeSettings({ employee }) {
   const handleRemoveFile = () => {
     setFile(null);
   };
+
+  const [positonId, getPositionId] = useState([]);
+  useEffect(() => {
+    const fetchpositonData = async () => {
+      const res = await axios.get(`${config.baseURL}/position`);
+      getPositionId(res.data);
+    };
+    fetchpositonData();
+  }, []);
 
   const [error1, setError1] = useState(false);
   const handleProfilePic = async (e) => {
@@ -114,7 +125,9 @@ function EmployeeSettings({ employee }) {
 
   return (
     <div>
+     
       <div className="user-settings-content">
+      <h1 style={{marginTop:60, marginLeft:50}}>Edit Personal Info </h1>
         <form>
           <div className="personal-information">
             <div className="user-form-item">
@@ -162,15 +175,15 @@ function EmployeeSettings({ employee }) {
               />
             </div>
             <div className="user-form-item">
-              <label htmlFor="position">Position</label>
-              <input
+                <label htmlFor="">Position</label>
+                <input
                 type="text"
-                id="matricNo"
-                name="matricNo"
-                value={userInfo.position}
-                disabled
+                id="position"
+                name="position"
+                value={userInfo.position.name}
+                onChange={handleChange}
               />
-            </div>
+              </div>
             <div className="user-form-item">
               <label htmlFor="sex">Sex</label>
               <select
@@ -178,6 +191,7 @@ function EmployeeSettings({ employee }) {
                 id="sex"
                 value={userInfo.sex}
                 onChange={handleChange}
+                disabled
               >
                 <option value="selectuser">--Sex--</option>
                 <option value="male">Male</option>
@@ -270,7 +284,7 @@ function EmployeeSettings({ employee }) {
             <div className="password-do-not-match" style={{ color: "red" }}>
               {error}
             </div>
-            <button onClick={handleSubmit}>Confirm Password</button>
+            <button onClick={handleSubmit} className="confirmPass">Confirm Password</button>
           </form>
           <div className="user-settings-line3">
             <hr />

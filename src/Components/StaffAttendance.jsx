@@ -3,7 +3,17 @@ import "./CSS/StaffAttendance.css";
 import { useState, useEffect } from "react";
 import { AttendancePopUp } from "./AttendancePopUp";
 
+
 export const StaffAttendance = ({ employee }) => {
+
+
+  const ServerImage = employee.image
+  
+
+
+
+
+  
   return (
     <div style={{ marginTop: 100, marginLeft: 130 }}>
       <div>

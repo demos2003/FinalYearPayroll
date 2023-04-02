@@ -5,7 +5,7 @@ import { AiOutlineMail, AiOutlineCalendar, AiOutlineArrowRight } from "react-ico
 import { BiHomeAlt } from "react-icons/bi"
 import { color } from "@mui/system";
 
-export const Payslip = () => {
+export const Payslip = ({employee}) => {
   return (
     <div className="payslipHolder">
       <div className="MonthIndicator">
@@ -17,7 +17,7 @@ export const Payslip = () => {
         </div>
         <div className="NameHolder">
           <div className="employeeName">
-            <h5>Nasiru Iyidemilade Halim, 110245</h5>
+            <h5>{employee.name}, {employee._id}</h5>
           </div>
           <div className="employeePosition">
             <h6 className="dateName">Developer</h6>

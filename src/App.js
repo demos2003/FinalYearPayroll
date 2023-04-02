@@ -21,10 +21,10 @@ import { useContext } from "react";
 import { useState } from "react";
 
 export default function App() {
-  const { employee } = useContext(employeeContext);
+  let { employee } = useContext(employeeContext);
   const { admin } = useContext(adminContext);
 
-    
+
   if (!employee) {
     employee = "";
   }
@@ -33,7 +33,9 @@ export default function App() {
       <BrowserRouter>
         <AdminContextProvider>
           <Routes>
+          
             <Route path="/" element={<Login />} />
+
             <Route path="/Dashboard" element={<Dashboard admin={admin} />} />
             <Route path="/attendance" element={<Attendance />} />
             <Route path="/employees" element={<Employees />} />

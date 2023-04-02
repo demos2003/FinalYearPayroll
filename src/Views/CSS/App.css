@@ -541,7 +541,7 @@ Svg{
     margin-left: 50px;
   }
   .personal-information {
-    margin-top: 100px;
+    margin-top: 20px;
     display: flex;
     width: 800px;
     justify-content: space-between;
@@ -577,10 +577,12 @@ Svg{
   }
   .user-settings-line2 {
     margin-top: 2%;
-    width: 95%;
+    width: 90%;
+    margin-left: 50px;
   }
   .user-change-password {
     margin-top: 2%;
+    margin-left: 50px;
   }
   .user-change-password h4 {
     font-weight: 600;
@@ -589,10 +591,11 @@ Svg{
   .change-password {
     margin-top: 2%;
     display: flex;
-    width: 70%;
+    width: 800px;
     justify-content: space-between;
     flex-wrap: wrap;
     height: 200px;
+ 
   }
   .change-password .user-form-item {
     display: flex;
@@ -732,6 +735,7 @@ Svg{
   .upload-profile-pic{
     margin-left: 50px;
   }
+
   
   .form{
     margin-bottom: 50px;
@@ -746,5 +750,10 @@ Svg{
     padding-top: 5px;
     padding-bottom: 5px;
 
+  }
+
+  .confirmPass{
+    background-color: #5D3FD3 !important;
+    width: 800px;
   }
   
