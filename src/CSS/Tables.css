@@ -1,0 +1,67 @@
+.tableWidth{
+    width: 90% !important;
+}
+
+.columnWidth{
+    width: 25%;
+}
+
+.employeeContentRow{
+    margin-bottom: -16px;
+}
+
+.columnWidth2{
+    width: 33%;
+}
+
+.positionHold{
+    background-color: white;
+    margin-left: 5%;
+    width: 90%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.positionTable{
+    margin-left: 5%;
+}
+
+.TimeSetter{
+     
+     background-color: white;
+     margin-left: 50px;
+     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+     padding: 10px;
+     width: 31%;
+     display: flex;
+     flex-direction: row;
+
+}
+
+
+.sidebar-button2 {
+  width: 230px;
+  height: 48px;
+  padding-top: 12px;
+ margin-top: 5px;
+ margin-bottom: 5px;
+  align-items: center;
+  text-align: left;
+  font-size: 17px;
+  color: white;
+  border: none;
+  display: flex;
+  text-decoration: none;
+  
+}
+.sidebar-button2:hover {
+  color: white;
+  border-bottom-color: #6928b4;
+  border-bottom-style: solid;
+}
+
+
+.active .sidebar-button2{
+    background-color: #a074d1;
+    border-bottom-color: #6928b4;
+    border-bottom-style: solid;
+}

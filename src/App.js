@@ -1,16 +1,20 @@
-import "../src/Views/CSS/App.css";
-import Login from "../src/Views/Login";
-import { Dashboard } from "../src/Views/Dashboard";
+import Login from "./Admin/Views/Login";
+import ViewAttendance from "./Admin/Views/ViewAttendance";
+import DashboardCont from "./Admin/Views/DashbardCont";
 import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Attendance from "../src/Views/Attendance";
-import Employees from "../src/Views/Employees";
-import Positions from "../src/Views/Positions";
-import EmployeeSettings from "../src/Views/EmployeeSettings";
-import Deductions from "../src/Views/Deductions";
-import UserLogin from "./Views/UserLogin";
-import { UserHomepage } from "./Views/UserHomepage";
+import Position from "./Admin/Views/Positions";
+import EmployeeRoute from "./Employee/EmployeeRoute";
+import Employees from "./Admin/Views/Employees";
+import EmployeeSettings from "./Employee/Views/EmployeeSettings";
+import UserLogin from "./Employee/Views/UserLogin";
+import AdminPayroll from "./Admin/Views/AdminPayroll";
+import Admin from "./Admin/Admin";
+import { StaffAttendance } from "./Employee/Views/StaffAttendance";
+import { Payslip } from "./Employee/Views/Payslip";
+import Landing from "./Admin/Views/Landing";
+
 import {
   EmployeeContextProvider,
   AdminContextProvider,
@@ -31,21 +35,30 @@ export default function App() {
       <BrowserRouter>
         <AdminContextProvider>
           <Routes>
-          
-            <Route path="/" element={<Login />} />
-
-            <Route path="/Dashboard" element={<Dashboard admin={admin} />} />
-            <Route path="/attendance" element={<Attendance />} />
-            <Route path="/employees" element={<Employees />} />
+            <Route path="/" element={<Landing/>}/>
+            <Route path="/Login" element={<Login />} />
+            <Route element={admin ? <Admin admin={admin} /> : <Login />}>
+              <Route
+                path="/dashboard"
+                element={<DashboardCont admin={admin} />}
+              />
+              <Route path="/attendance" element={<ViewAttendance admin={admin}/>} />
+              <Route path="/employees" element={<Employees admin={admin}/>} />
+              <Route path="/postions" element={<Position admin={admin}/>} />
+              <Route path="/payroll" element={<AdminPayroll admin={admin}/>} />
+            </Route>
           </Routes>
         </AdminContextProvider>
         <EmployeeContextProvider>
           <Routes>
             <Route path="/UserLogin" element={<UserLogin />} />
-            <Route
-              path="UserHomepage"
-              element={<UserHomepage employee={employee.user} />}
-            />
+            <Route element={ employee ? <EmployeeRoute employee={employee.user} /> : <UserLogin /> }>
+            <Route path="/settings" element={<EmployeeSettings employee={employee.user} />} />
+            <Route path="/staffattendance" element={<StaffAttendance employee={employee.user} />} />
+            <Route path="/payslip" element={<Payslip employee={employee.user}/>} /> 
+         
+
+              </Route>
           </Routes>
         </EmployeeContextProvider>
       </BrowserRouter>
