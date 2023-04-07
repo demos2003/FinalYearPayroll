@@ -23,10 +23,12 @@ export const Payslip = ({ employee }) => {
     fetchpositonData();
   }, []);
 
-  const  [pay, getPay] = useState([]);
+  const [pay, getPay] = useState([]);
   useEffect(() => {
     const fetchPay = async () => {
-      const res = await axios.get(`${config.baseURL}/monthlypay/${employee._id}`);
+      const res = await axios.get(
+        `${config.baseURL}/monthlypay/${employee._id}`
+      );
       getPay(res.data);
     };
     fetchPay();
@@ -34,44 +36,63 @@ export const Payslip = ({ employee }) => {
 
   const [attendance, getAttendance] = useState([]);
   useEffect(() => {
-     const fetchAttendance = async () => {
-      const res = await axios.get(`${config.baseURL}/attendance/employee/${employee._id}/attendance`);
+    const fetchAttendance = async () => {
+      const res = await axios.get(
+        `${config.baseURL}/attendance/employee/${employee._id}/attendance`
+      );
       getAttendance(res.data);
-     };
-     fetchAttendance();
+    };
+    fetchAttendance();
   }, []);
 
-  // console.log(employee._id);
-  // console.log(attendance)
+  // console.log(employee.createdAt)
 
+  const FormatDate = ({ employee }) => {
+    const dateString2 = employee.createdAt;
 
-  const AttendanceHistory = ({item}) => {
+    const date2 = new Date(dateString2);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    const formattedDate2 = date2.toLocaleDateString("en-US", options);
+   
+
+    return (
+      <div>
+        <p className="info-style" style={{ fontWeight: "bolder" }}>
+         {formattedDate2}
+        </p>
+      </div>
+    );
+  };
+
+  const AttendanceHistory = ({ item }) => {
     let lateStatus = item.late ? "Late" : "On Time";
     const dateString = item.date;
     const date = new Date(dateString);
     const options = { month: "long", day: "numeric", year: "numeric" };
     const formattedDate = date.toLocaleDateString("en-US", options);
-    // console.log(item.late)
 
     const statusStyle = {
-      color: item.late ? "red" : "green"
+      color: item.late ? "red" : "green",
     };
     return (
       <div>
-       <div className="attendanceHolderRow" style={{display:"flex", flexDirection:"row"}}>
-        <p className="attendanceHistory">{formattedDate}</p>
-        <p className="attendanceHistory" style={statusStyle}>{lateStatus}</p>
-        
-       </div>
-       <hr/>
-       </div>
-    )
-    
-  }
+        <div
+          className="attendanceHolderRow"
+          style={{ display: "flex", flexDirection: "row" }}
+        >
+          <p className="attendanceHistory">{formattedDate}</p>
+          <p className="attendanceHistory" style={statusStyle}>
+            {lateStatus}
+          </p>
+        </div>
+        <hr />
+      </div>
+    );
+  };
 
-  const sortedAttendance = attendance.sort((a, b) => new Date(b.date) - new Date(a.date));
- 
-
+  const sortedAttendance = attendance.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
 
   return (
     <div className="payslipHolder">
@@ -134,12 +155,9 @@ export const Payslip = ({ employee }) => {
           <div className="PaySlipInfo">
             <h4>Attendace History</h4>
             <hr />
-            {
-              sortedAttendance.map((item) => (
-                <AttendanceHistory item={item}/>
-              ))
-            }
-           
+            {sortedAttendance.map((item) => (
+              <AttendanceHistory item={item} />
+            ))}
           </div>
           <div className="info-holder2">
             <h4>Personal Info</h4>
@@ -149,20 +167,21 @@ export const Payslip = ({ employee }) => {
                 {" "}
                 <BsTelephone className="icon-pos2" /> Phone
               </div>
-              <p className="info-style">08188102756</p>
+              <p className="info-style">{employee.phoneNo}</p>
             </div>
             <div className="mini-info">
               <div>
                 {" "}
                 <AiOutlineMail className="icon-pos2" /> Email{" "}
               </div>
-              <p className="info-style">Ladenas202@gmail.com</p>
+              <p className="info-style">{employee.email}</p>
             </div>
             <div className="mini-info">
               <div>
                 <AiOutlineCalendar className="icon-pos2" /> Start Date
               </div>
-              <p className="info-style">June 27, 2022</p>
+
+              <FormatDate employee={employee} />
             </div>
             <div className="mini-info">
               <div>

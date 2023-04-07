@@ -8,10 +8,12 @@ import axios from "axios";
 import config from "../../config";
 import PositionTable from "../Components/PositionTable";
 
+
 function Position() {
   const [name, setNewName] = useState("")
   const [pay, setPay] = useState("")
   const [error, setError] = useState(false);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,14 +34,21 @@ function Position() {
     const fetchpositonData = async () => {
       const res = await axios.get(`${config.baseURL}/position`);
       getPositionId(res.data);
+      
     };
     fetchpositonData();
 
   }, [])
 
-
+  
 
   const [addPopUp, setAddPopUp] = useState(false);
+
+  // if(loading1){
+  //   return <div>
+  //     <>Loading</>
+  //   </div>;
+  // }
   return (
     <div style={{marginTop:45}} >
   

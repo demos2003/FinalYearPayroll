@@ -23,12 +23,10 @@ function EmployeeSettings({ employee }) {
     sex: "",
     position: "",
     phoneNo: "",
-    // password:""
   });
 
 
-  console.log(employee)
-  console.log(userInfo.position)
+  console.log(employee._id)
 
   const [file, setFile] = useState(null);
 
@@ -55,7 +53,7 @@ function EmployeeSettings({ employee }) {
     try {
       const formData = new FormData();
       formData.append("profilePic", file);
-      const response = await axios.post(`${config.baseURL}/`, formData, {
+      const response = await axios.post(`${config.baseURL}/employee/profilePic/${employee._id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
