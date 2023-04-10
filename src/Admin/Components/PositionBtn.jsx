@@ -15,6 +15,7 @@ function PositionBtn({ positionItem }) {
   const [pay, setPay] = useState("");
   const [position, setPosition] = useState([]);
   const [updateMode, setUpdateMode] = useState(false);
+  const [error, setError] = useState("")
 
   useEffect(() => {
     const getPosition = async () => {
@@ -30,7 +31,9 @@ function PositionBtn({ positionItem }) {
     try {
       await axios.delete(`${config.baseURL}/position/${positionItem}`);
       window.location.replace("/Dashboard");
-    } catch (err) {}
+    } catch (err) {
+     
+    }
   };
 
   const handleUpdate = async () => {
@@ -40,7 +43,9 @@ function PositionBtn({ positionItem }) {
         pay,
       });
       window.location.reload();
-    } catch (err) {}
+    } catch (err) {
+      setError("Please Dont Leave any Field Empty")
+    }
   };
 
   return (
@@ -100,6 +105,11 @@ function PositionBtn({ positionItem }) {
             >
               Save
             </button>
+            {error && (
+              <div>
+                <p>{error}</p>
+              </div>
+            )}
           </form>
         </Popup1>
         <a onClick={() => setBP4(true)} className="del-btn">

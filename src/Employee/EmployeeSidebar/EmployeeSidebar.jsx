@@ -5,6 +5,8 @@ import { AiOutlineHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { Avatar } from "@mui/material";
 import StaffLogOut from "../Components/StaffLogOut";
+import {IoSettingsOutline} from "react-icons/io5"
+import {MdOutlinePayments} from "react-icons/md"
 
 const EmployeeSidebar = ({ employee }) => {
   const [open, setOpen] = React.useState(false);
@@ -21,7 +23,6 @@ const EmployeeSidebar = ({ employee }) => {
               <Avatar src="/broken-image.jpg" />
 
               <div className="dropdown">
-                {/* logout and change password drop down */}
                 <div className="logout-dropdown">
                   <p className="user-name">{employee.name}</p>
                 </div>
@@ -30,21 +31,21 @@ const EmployeeSidebar = ({ employee }) => {
             <hr></hr>
             {/* side navbar begins */}
             <div className="options">
-              <NavLink to="/staffattendance" style={{ textDecoration: 'none' }}>
-              <div  className="sidebar-button2">
+              <NavLink to="/staffattendance" style={{ textDecoration: "none" }}>
+                <div className="sidebar-button2">
                   <AiOutlineHome className="o-icon" />
                   ATTENDANCE
                 </div>
               </NavLink>
-              <NavLink to="/payslip" style={{ textDecoration: 'none' }}>
-             <div  className="sidebar-button2" >
-                  <AiOutlineHome className="o-icon" />
+              <NavLink to="/payslip" style={{ textDecoration: "none" }}>
+                <div className="sidebar-button2">
+                  <MdOutlinePayments className="o-icon" />
                   PAYSLIP
                 </div>
               </NavLink>
-              <NavLink to="/settings" style={{ textDecoration: 'none' }}>
-               <div  className="sidebar-button2">
-                  <AiOutlineHome className="o-icon" />
+              <NavLink to="/settings" style={{ textDecoration: "none" }}>
+                <div className="sidebar-button2">
+                  <IoSettingsOutline className="o-icon"/>
                   SETTINGS
                 </div>
               </NavLink>

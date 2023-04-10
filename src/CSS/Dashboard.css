@@ -74,8 +74,8 @@
 }
 
 .o-icon {
-  position: relative;
-  top: -4px;
+  /* position: relative;
+  top: -4px; */
   color: white !important;
   font-size: 23px;
 }
@@ -110,18 +110,16 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  /* background-color: whitesmoke; */
+  background-color: whitesmoke;
   height: 100vh;
 }
 
 .sidebar-container {
   width: 20%;
-
 }
 
 .outlet-contaner {
   width: 80% !important;
-  
 }
 
 .attendTable {
@@ -349,13 +347,7 @@
 }
 
 .slip1 {
-  background-color: rgb(198, 137, 198);
-
-  background-image: linear-gradient(
-    to right,
-    rgb(198, 137, 198),
-    rgb(243, 207, 243)
-  );
+  background-color: white;
 }
 
 .slip2 {
@@ -384,9 +376,10 @@
 }
 
 .calendar-pos {
-  position: relative;
+  /* position: relative;
   top: 70px;
-  left: 75px;
+  left: 75px; */
+  height: 20px !important;
 }
 
 .react-calendar {
@@ -398,7 +391,7 @@
   width: 90% !important;
   margin-left: 5%;
   padding-left: 4%;
-  height: 500px;
+  height: 621px;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin-top: 40px;
@@ -416,5 +409,106 @@
   width: 300px;
   padding: 2px;
   border-radius: 7px;
-  /* margin-left: 10px; */
+}
+
+.dashboard_card {
+  width: 300px;
+  height: 140px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 10px;
+}
+
+.card_icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(226, 226, 226);
+  border-radius: 20px;
+  border: 1px solid #1c0676;
+}
+
+.info_layer {
+  margin-top: 10px;
+}
+
+.icon_layer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cardText {
+  color: rgb(170, 170, 170);
+  font-size: 13px;
+
+  /* font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; */
+}
+
+.cardText2 {
+  font-size: 25px;
+
+  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+}
+
+.layer2{
+  width: 91%;
+  /* background-color: red; */
+  height: 465px;
+  margin-left: 3.5%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.layer2-left{
+  background-color: white;
+  width: 63%;
+  height: 465px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.layer2-right-top{
+  position: relative;
+  left: 50px;
+  height: 200px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 5px;
+}
+
+.layer2-right{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: -35px;
+}
+
+.layer2-right-bottom{
+  background-color: white;
+  height: 230px;
+  position: relative;
+  left: 50px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-top: 100px;
+  border-radius: 5px;
+}
+
+.donut{
+  margin-top: 25px;
+  margin-left: 50px;
+  /* padding-top: 15px; */
+}
+
+.calendar-container .react-calendar__tile {
+ height: 27px;
+  overflow-y: scroll; 
+  padding: 10px;
+  font-size: 10px !important;
+  margin-top: 0 !important;
+}
+
+
+.react-calendar__month-view{
+  margin-top: -10px;
 }

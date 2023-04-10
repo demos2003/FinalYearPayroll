@@ -45,7 +45,17 @@ export const Payslip = ({ employee }) => {
     fetchAttendance();
   }, []);
 
-  // console.log(employee.createdAt)
+  const [userInfo, setUserInfo] = useState([]);
+
+  useEffect(() => {
+    const getUserDetails = async () => {
+      const res = await axios.get(`${config.baseURL}/employee/${employee._id}`);
+      setUserInfo(res.data);
+    };
+    getUserDetails();
+  }, [employee._id]);
+
+  const posName = userInfo.position;
 
   const FormatDate = ({ employee }) => {
     const dateString2 = employee.createdAt;
@@ -53,12 +63,11 @@ export const Payslip = ({ employee }) => {
     const date2 = new Date(dateString2);
     const options = { year: "numeric", month: "long", day: "numeric" };
     const formattedDate2 = date2.toLocaleDateString("en-US", options);
-   
 
     return (
       <div>
         <p className="info-style" style={{ fontWeight: "bolder" }}>
-         {formattedDate2}
+          {formattedDate2}
         </p>
       </div>
     );
@@ -94,6 +103,10 @@ export const Payslip = ({ employee }) => {
     (a, b) => new Date(b.date) - new Date(a.date)
   );
 
+  const Slice = sortedAttendance.slice(0,5)
+
+  console.log(Slice)
+
   return (
     <div className="payslipHolder">
       <div className="MonthIndicator">
@@ -108,15 +121,15 @@ export const Payslip = ({ employee }) => {
         </div>
         <div className="NameHolder">
           <div className="employeeName">
-            <h5>
-              {employee.name}, {employee._id}
-            </h5>
+            <h5>{employee.name},</h5>
           </div>
           <div className="employeePosition">
-            <h6 className="dateName">Developer</h6>
+            <h6 className="dateName">
+              {posName ? posName.name : <>Position Loading</>}
+            </h6>
           </div>
           <div className="employeeTags">
-            <h5>Developer</h5>
+            <h5>{employee._id}</h5>
           </div>
         </div>
       </div>
@@ -153,14 +166,14 @@ export const Payslip = ({ employee }) => {
       <div>
         <div className="paySlipPage">
           <div className="PaySlipInfo">
-            <h4>Attendace History</h4>
+            <h5>Attendance History</h5>
             <hr />
-            {sortedAttendance.map((item) => (
+            {Slice.map((item) => (
               <AttendanceHistory item={item} />
             ))}
           </div>
           <div className="info-holder2">
-            <h4>Personal Info</h4>
+            <h5>Personal Information</h5>
             <hr />
             <div className="mini-info">
               <div>
@@ -188,7 +201,9 @@ export const Payslip = ({ employee }) => {
                 <BsPerson className="icon-pos2" />
                 Position
               </div>
-              <p className="info-style">Lead Developer</p>
+              <p className="info-style">
+                {posName ? posName.name : <>Loading</>}
+              </p>
             </div>
             <div className="mini-info">
               <div>

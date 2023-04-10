@@ -7,13 +7,22 @@ import { PopUp3 } from "../Components/PopUp3";
 import axios from "axios";
 import config from "../../config";
 import PositionTable from "../Components/PositionTable";
-
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 function Position() {
-  const [name, setNewName] = useState("")
-  const [pay, setPay] = useState("")
+  const [name, setNewName] = useState("");
+  const [pay, setPay] = useState("");
   const [error, setError] = useState(false);
-
+  const [error2, setError2] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,23 +33,39 @@ function Position() {
       });
       res.data && window.location.reload();
     } catch (err) {
+      setError2("Please Fill all Fields")
     }
   };
 
-
   const [positonId, getPositionId] = useState([]);
   useEffect(() => {
-
     const fetchpositonData = async () => {
       const res = await axios.get(`${config.baseURL}/position`);
       getPositionId(res.data);
-      
     };
     fetchpositonData();
+    
+  }, []);
 
-  }, [])
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
 
-  
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
   const [addPopUp, setAddPopUp] = useState(false);
 
@@ -50,58 +75,90 @@ function Position() {
   //   </div>;
   // }
   return (
-    <div style={{marginTop:45}} >
-  
-
+    <div style={{ marginTop: 45 }}>
       <button className="AddEmployee2" onClick={() => setAddPopUp(true)}>
         Add
       </button>
-      <PopUp3 trigger={addPopUp} setTrigger={setAddPopUp} handleSubmit={handleSubmit}>
+      <PopUp3
+        trigger={addPopUp}
+        setTrigger={setAddPopUp}
+        handleSubmit={handleSubmit}
+      >
         <form onSubmit={handleSubmit}>
-        <div class="form-row">
-          <div class="form-group form-edit">
-            <label for="inputEmail4">Position Title</label>
-            <input
-              type="text"
-              class="form-control input-edit"
-              id="inputAddress"
-              onChange={(e) => setNewName(e.target.value)}
-            ></input>
+          <div class="form-row">
+            <div class="form-group form-edit">
+              <label for="inputEmail4">Position Title</label>
+              <input
+                type="text"
+                class="form-control input-edit"
+                id="inputAddress"
+                onChange={(e) => setNewName(e.target.value)}
+              ></input>
+            </div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group form-edit">
-            <label for="inputEmail4">Rate Per Day</label>
-            <input
-              type="text"
-              class="form-control input-edit"
-              id="inputAddress"
-              onChange={(e) => setPay(e.target.value)}
-            ></input>
-          </div>
-          <button type="submit" className="btn btn-primary save-btn">
+          <div class="form-row">
+            <div class="form-group form-edit">
+              <label for="inputEmail4">Rate Per Day</label>
+              <input
+                type="text"
+                class="form-control input-edit"
+                id="inputAddress"
+                onChange={(e) => setPay(e.target.value)}
+              ></input>
+            </div>
+            <button type="submit" className="btn btn-primary save-btn">
               Save
             </button>
-        </div>
+          </div>
+          {error2 && (
+            <div>
+              <p style={{color:"red"}}>{error2}</p>
+            </div>
+          )}
         </form>
       </PopUp3>
-      <div style={{width:990, height:555}} className="positionHold" >
-        <table className="table table-bordered tableWidth table-striped positionTable ">
-          <thead className="tableWidth">
-            <tr className="tableWidth">
-              <th scope="col" className="columnWidth2">Position Title</th>
-              <th scope="col" className="columnWidth2">Rate PER Hour (#)</th>
-              <th scope="col" className="columnWidth2">Tools</th>
-            </tr>
-          </thead>
-         </table>
-         {
-            positonId.map((item) => (
-              <PositionTable item={item}/>
-            ))
-          }
+      <div style={{ width: 990, height: 555 }} className="positionHold">
+        <TableContainer
+          component={Paper}
+          style={{ width: 890, marginLeft: 46, marginBottom: 40 }}
+        >
+          <Table sx={{ minWidth: 550 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <TableCell className="columnWidth" style={{ paddingLeft: 10 }}>
+                  Position Title
+                </TableCell>
+                <TableCell className="columnWidth">Rate PER Hour (#)</TableCell>
+                <TableCell className="columnWidth">Tools &nbsp;</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {positonId.map((item) => (
+                <StyledTableRow>
+                   <StyledTableCell className="columnWidth">
+                  {item.name.toUpperCase()}
+                  </StyledTableCell>
+                  <StyledTableCell className="columnWidth">
+                    {item.pay}
+                  </StyledTableCell>
+                  <StyledTableCell className="columnWidth">
+                    <PositionBtn positionItem={item._id} item={item} />
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+
         <div className="pos-longBtn positionTable">
-          <LongBtn />
+          {/* <LongBtn /> */}
+
+          <Pagination
+            count={3}
+            variant="outlined"
+            shape="rounded"
+            // color=""
+          />
         </div>
       </div>
     </div>

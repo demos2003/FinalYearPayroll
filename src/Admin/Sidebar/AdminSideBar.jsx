@@ -6,6 +6,10 @@ import { BsPersonSquare } from "react-icons/bs";
 import { AiOutlineHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import "../../CSS/Dashboard.css"
+import {ImCheckmark2} from "react-icons/im";
+import {IoPersonOutline} from "react-icons/io5"
+import {AiOutlineIdcard} from "react-icons/ai"
+import {MdOutlinePayments} from "react-icons/md"
 
 const AdminSideBar = ({ admin }) => {
   const [open, setOpen] = React.useState(false);
@@ -41,25 +45,25 @@ const AdminSideBar = ({ admin }) => {
             </NavLink>
             <NavLink to="/attendance" style={{ textDecoration: 'none' }}>
               <div className="sidebar-button2">
-                <AiOutlineHome className="o-icon" />
+                <ImCheckmark2 className="o-icon" />
                 ATTENDANCE
               </div>
             </NavLink>
             <NavLink to="/employees" style={{ textDecoration: 'none' }}>
               <div className="sidebar-button2">
-                <BsPersonSquare className="o-icon" />
+                <IoPersonOutline className="o-icon" />
                 EMPLOYEES
               </div>
             </NavLink>
             <NavLink to="/postions" style={{ textDecoration: 'none' }}>
               <div className="sidebar-button2">
-                <AiOutlineHome className="o-icon" />
+                <AiOutlineIdcard className="o-icon" />
                 POSITIONS
               </div>
             </NavLink>
             <NavLink to="/payroll" style={{ textDecoration: 'none' }}>
               <div  className="sidebar-button2">
-                <BsPersonSquare className="o-icon" />
+                <MdOutlinePayments className="o-icon" />
                 PAYROLL
                 </div>
             </NavLink>

@@ -8,6 +8,16 @@ import Popup1 from "../Components/Popup1";
 import axios from "axios";
 import config from "../../config";
 import EmployeesTable from "../Components/EmployeesTable";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import FaceRec from "../Components/FaceIO";
+import RecFace from "../Components/RecFaceIO";
 
 function Employees() {
   const [buttonPopup2, setBP2] = useState(false);
@@ -97,29 +107,19 @@ function Employees() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const formData = new FormData();
-      // formData.append("profilePic", file);
-      formData.append("name", name);
-      formData.append("address", address);
-      formData.append("sex", sex);
-      formData.append("position", position);
-      formData.append("password", password);
-      formData.append("email", email);
-      formData.append("phoneNo", phoneNo);
-      // formData.append("facialId", faceId);
-      const response = await axios.post(
-        `${config.baseURL}/auth/register/employee`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      response.window.location.reload();
+      const res = await axios.post(`${config.baseURL}/auth/register/employee`, {
+        name,
+        address,
+        sex,
+        position,
+        email,
+        phoneNo,
+        password,
+      });
+      res.data && window.location.reload();
+      
     } catch (err) {
-      console.log(err);
-      setError2(true);
+      setError2("Error: Please Fill all fields");
     }
   };
 
@@ -141,9 +141,29 @@ function Employees() {
     fetchEmployee();
   }, []);
 
-  const handleButtonClick = () => {
-    document.querySelector('input[type="file"]').click();
-  };
+  // const handleButtonClick = () => {
+  //   document.querySelector('input[type="file"]').click();
+  // };
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
   return (
     <div>
@@ -246,40 +266,66 @@ function Employees() {
                     <option>Others</option>
                   </select>
                 </div>
+                <div>
+                  <FaceRec />
+                  <RecFace />
+                </div>
                 {/* <button onClick={faceRegistration}>Register Face</button>
                   <button className="action face-sign-in" onClick={faceSignIn}>Face Sign In</button> */}
               </div>
               <button type="submit" className="btn btn-primary save-btn">
                 Save
               </button>
+              {error2 && <div style={{ color: "red" }}>{error2}</div>}
             </form>
           </Popup1>
           <div
-            style={{ width: 990, height: 542, marginLeft: "3%" }}
+            style={{ width: 900, height: 542, marginLeft: "3%" }}
             className="attendance_table-holder"
           >
             <h1 style={{ marginTop: 50 }}>EMPLOYEES</h1>
-            <table className="table table-bordered tableWidth attendance_table-holder">
-              <thead className="tableWidth">
-                <tr className="tableWidth">
-                  <th scope="col" className="columnWidth">
-                    Employee ID
-                  </th>
-                  <th scope="col" className="columnWidth">
-                    Name
-                  </th>
-                  <th scope="col" className="columnWidth">
-                    Position
-                  </th>
-                  <th scope="col" className="columnWidth">
-                    Controls
-                  </th>
-                </tr>
-              </thead>
-            </table>
-            {employee.map((emp) => (
-              <EmployeesTable emp={emp} key={emp._id} positonId={positonId} />
-            ))}
+            <TableContainer
+              component={Paper}
+              style={{ marginTop: 40, marginBottom: 20 }}
+              id="TableCont"
+            >
+              <Table sx={{ minWidth: 550 }} aria-label="customized table">
+                <TableHead style={{ position: "sticky", top: 0, zIndex: 0, backgroundColor:"white" }}>
+                  <TableRow>
+                    <TableCell className="columnWidth">Employee ID</TableCell>
+                    <TableCell className="columnWidth">Name</TableCell>
+                    <TableCell className="columnWidth">
+                      Position &nbsp;
+                    </TableCell>
+                    <TableCell className="columnWidth">
+                      Controls &nbsp;
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {employee.map((emp) => (
+                    <StyledTableRow>
+                      <StyledTableCell className="columnWidth">
+                        {emp._id}
+                      </StyledTableCell>
+                      <StyledTableCell className="columnWidth">
+                        {emp.name}
+                      </StyledTableCell>
+                      <StyledTableCell className="columnWidth">
+                        {emp.position.name}
+                      </StyledTableCell>
+                      <StyledTableCell className="columnWidth">
+                        <Editbtn
+                          emp={emp}
+                          employeeEmp={emp._id}
+                          positonId={positonId}
+                        />
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
             <button className="AddEmployee" onClick={() => setBP2(true)}>
               Add
             </button>

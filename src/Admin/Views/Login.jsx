@@ -6,11 +6,14 @@ import axios from "axios";
 import config from "../../config";
 import { useContext, useRef } from "react";
 import { adminContext } from "../../Context/Context";
+import { useState } from "react";
+import { BiError } from "react-icons/bi";
 
 function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(adminContext);
+  const [errorMessage, setErrorMessage] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +27,7 @@ function Login() {
       res.data && window.location.replace("/dashboard");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
+      setErrorMessage("Incorrect Email or Password");
     }
   };
 
@@ -69,6 +73,18 @@ function Login() {
             className="signin-btn"
             style={{ width: "100%", marginBottom: 10 }}
           />
+          {errorMessage && (
+            <div
+              className="error-message"
+              style={{
+                color: "red",
+
+                marginBottom: "2%",
+              }}
+            >
+              {errorMessage}
+            </div>
+          )}
           <p>
             Are you an User ? <Link to="/UserLogin">User Login</Link>
           </p>

@@ -104,17 +104,19 @@ function Location() {
 }
 
 const DisabledForm = ({ name,  time, day, location, employee }) => {
-  console.log(employee)
+  // console.log(employee._id)
   const [takeAttendance, setTakeAttendance] = useState(false);
   const [empID, setEmpID] = useState("")
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${config.baseURL}/attendance`, {
+      const res = await axios.post(`${config.baseURL}/attendance/${employee._id}`, {
          employeeId : employee._id,
       });
       res.data && window.location.reload();
-    } catch (err) {}
+    } catch (err) {
+      alert("Failed to Upload");
+    }
   };
 
   return (
@@ -134,7 +136,7 @@ const DisabledForm = ({ name,  time, day, location, employee }) => {
           <br />
           <input
           value={employee._id}
-          onChange={(e) => setEmpID(e.target.value)}
+          // onChange={(e) => setEmpID(e.target.value)}
 
           />
         </div>

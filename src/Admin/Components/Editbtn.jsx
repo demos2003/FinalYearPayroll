@@ -21,6 +21,7 @@ function Editbtn({ employeeEmp, positonId }) {
   const [position, setPosition] = useState("");
   const [employee, setEmployee] = useState([]);
   const [updateMode, setUpdateMode] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const getEmployee = async () => {
@@ -41,7 +42,7 @@ function Editbtn({ employeeEmp, positonId }) {
     try {
       await axios.delete(`${config.baseURL}/employee/${employeeEmp}`);
       window.location.replace("/Dashboard");
-    } catch (err) { }
+    } catch (err) {}
   };
 
   const handleUpdate = async () => {
@@ -56,17 +57,21 @@ function Editbtn({ employeeEmp, positonId }) {
         position,
       });
       window.location.reload();
-    } catch (err) { }
+    } catch (err) {
+      setError("Please make sure all fields are filled");
+    }
   };
 
   return (
     <div>
       <div className="btn-flex">
-        <a onClick={() => {
-          setButtonPopup(true);
-          setUpdateMode(true);
-
-        }} className="edit-btn">
+        <a
+          onClick={() => {
+            setButtonPopup(true);
+            setUpdateMode(true);
+          }}
+          className="edit-btn"
+        >
           <Svg2></Svg2>
         </a>
 
@@ -222,14 +227,8 @@ function Editbtn({ employeeEmp, positonId }) {
                     ))}
                     <option>Others</option>
                   </select>
-
                 ) : (
-
-                  <select
-                    id="inputState"
-                    className="form-control"
-
-                  >
+                  <select id="inputState" className="form-control">
                     <option value="selectuser">--Select a Category--</option>
                     {positonId.map((item) => (
                       <option value={item._id} key={item._id}>
@@ -238,9 +237,7 @@ function Editbtn({ employeeEmp, positonId }) {
                     ))}
                     <option>Others</option>
                   </select>
-
                 )}
-
               </div>
             </div>
             <button
@@ -250,6 +247,11 @@ function Editbtn({ employeeEmp, positonId }) {
             >
               Save
             </button>
+            {error && (
+              <div>
+                <p>{error}</p>
+              </div>
+            )}
           </form>
         </Popup1>
 
@@ -260,7 +262,9 @@ function Editbtn({ employeeEmp, positonId }) {
           <div className="popup_content">
             <MdCancel className="cancel_icon" />
             <h3>Are you sure you want to delete</h3>
-            <button className="del-confirm" onClick={handleDelete}>Yes..</button>
+            <button className="del-confirm" onClick={handleDelete}>
+              Yes..
+            </button>
           </div>
         </Popup2>
       </div>

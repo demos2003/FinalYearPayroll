@@ -51,12 +51,14 @@
   border: none;
   display: flex;
   text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   
 }
 .sidebar-button2:hover {
   color: white;
-  border-bottom-color: #6928b4;
-  border-bottom-style: solid;
+  font-size: 19px;
+  transition: font-size 0.2s ease;
+  
 }
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useContext, useRef } from "react";
@@ -10,6 +10,7 @@ const UserLogin = () => {
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(employeeContext);
+  const [errorMessage, setErrorMessage] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,14 +24,14 @@ const UserLogin = () => {
       res.data && window.location.replace("/staffattendance");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
+      setErrorMessage("Invalid Email or password");
     }
   };
-
 
   return (
     <div className="color">
       <div className="form-arr">
-        <h4>User Login</h4>
+        <h4 style={{ textAlign: "center", marginBottom:20 }}>User Login</h4>
         <form onSubmit={handleSubmit}>
           <label>
             <div className="field-holder">
@@ -63,11 +64,28 @@ const UserLogin = () => {
             </div>
           </label>
           <div>
-           
-              <input type="submit" value="Sign in" className="signin-btn" />
-         
+            <input
+              type="submit"
+              value="Sign in"
+              className="signin-btn"
+              style={{ width: "100%", marginBottom: 10 }}
+            />
+            {errorMessage && (
+            <div
+              className="error-message"
+              style={{
+                color: "red",
+
+                marginBottom: "2%",
+              }}
+            >
+              {errorMessage}
+            </div>
+          )}
           </div>
-          <p>Are you an Admin ? <Link to="/Login">Admin Login</Link></p>
+          <p>
+            Are you an Admin ? <Link to="/Login">Admin Login</Link>
+          </p>
         </form>
       </div>
     </div>

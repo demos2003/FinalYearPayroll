@@ -2,7 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DateTimePicker from "../Components/DateTimePicker";
 import config from "../../config";
-
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 const ViewAttendance = () => {
   const [lateness, setLateness] = useState();
@@ -16,6 +23,26 @@ const ViewAttendance = () => {
     fetchLateness();
   });
 
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
+
   const AttendanceTable = ({ item }) => {
     const timeString = item.createdAt;
     const date = new Date(timeString);
@@ -27,21 +54,17 @@ const ViewAttendance = () => {
 
     return (
       <div>
-        <table className="table table-bordered fixed tableWidth ">
-          <tbody className="">
-            <tr>
-              <td className="columnWidth">
-                <div>{item.employee._id}</div>
-              </td>
-              <td className="columnWidth">
-                <div>{item.employee.name}</div>
-              </td>
-              <td className="columnWidth">
-                <div>{formattedTime}</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <StyledTableRow>
+          <StyledTableCell className="columnWidth">
+            {item.employee._id}
+          </StyledTableCell>
+          <StyledTableCell className="columnWidth">
+            {item.employee.name}
+          </StyledTableCell>
+          <StyledTableCell className="columnWidth">
+            {formattedTime}
+          </StyledTableCell>
+        </StyledTableRow>
       </div>
     );
   };
@@ -57,6 +80,8 @@ const ViewAttendance = () => {
     fetchDailyAttendance();
   }, []);
 
+  console.log(dailyAttendance);
+
   const [attendance, getAttendance] = useState([]);
   useEffect(() => {
     const fetchAttendance = async () => {
@@ -70,28 +95,8 @@ const ViewAttendance = () => {
     setSelectedOption(event.target.value);
   };
 
-  const renderAttendanceData = () => {
-    if (selectedOption === "daily") {
-      return (
-        <div>
-          {dailyAttendance.map((item) => (
-            <AttendanceTable item={item} />
-          ))}
-        </div>
-      );
-    } else if (selectedOption === "monthly") {
-      return (
-        <div>
-          {attendance.map((item) => (
-            <AttendanceTable item={item} />
-          ))}
-        </div>
-      );
-    }
-  };
-
   return (
-    <div>
+    <div style={{ marginTop: 50, backgroundColor: "whitesmoke" }}>
       <div className="attendTable">
         <h1 className="active_pagehea">ATTENDANCE</h1>
 
@@ -104,29 +109,70 @@ const ViewAttendance = () => {
           <option value="monthly">Monthly</option>
         </select>
         <div className="table-holder attendance_table-holder">
-          <table className="table table-bordered tableWidth attendance_table">
-            <thead className="tableWidth">
-              <tr className="tableWidth">
-                <th scope="col" className="columnWidth">
-                  Employee ID
-                </th>
-                <th scope="col" className="columnWidth">
-                  Name
-                </th>
-                <th scope="col" className="columnWidth">
-                  Time in
-                </th>
-              </tr>
-            </thead>
-          </table>
+          <TableContainer
+            component={Paper}
+            style={{ marginTop: 40, marginBottom: 20 }}
+            id="TableCont"
+          >
+            <Table sx={{ minWidth: 550 }} aria-label="customized table">
+              <TableHead style={{ position: "sticky", top: 0, zIndex: 0, backgroundColor:"white" }}>
+                <TableRow>
+                  <TableCell className="columnWidth">Employee ID</TableCell>
+                  <TableCell className="columnWidth">Name</TableCell>
+                  <TableCell className="columnWidth">Time in &nbsp;</TableCell>
+                </TableRow>
+              </TableHead>
 
-          {renderAttendanceData()}
+              {selectedOption === "daily" ? (
+                <TableBody>
+                  {dailyAttendance.map((item) => (
+                    <StyledTableRow key={item._id}>
+                      <StyledTableCell className="columnWidth">
+                        {item.employee._id}
+                      </StyledTableCell>
+                      <StyledTableCell className="columnWidth">
+                        {item.employee.name}
+                      </StyledTableCell>
+                      <StyledTableCell className="columnWidth">
+                        {new Date(item.createdAt).toLocaleTimeString("en-US", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: true,
+                        })}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              ) : selectedOption === "monthly" ? (
+                <TableBody>
+                  {attendance.map((item) => (
+                    <StyledTableRow key={item._id}>
+                      <StyledTableCell className="columnWidth">
+                        {item.employee._id}
+                      </StyledTableCell>
+                      <StyledTableCell className="columnWidth">
+                        {item.employee.name}
+                      </StyledTableCell>
+                      <StyledTableCell className="columnWidth">
+                        {new Date(item.createdAt).toLocaleTimeString("en-US", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: true,
+                        })}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              ) : null}
+            </Table>
+          </TableContainer>
         </div>
         <h4>Attendance Time Picker</h4>
         <div>
           {lateness ? <DateTimePicker lateness={lateness} /> : <>Loading</>}
         </div>
       </div>
+      <div style={{ height: 50 }}></div>
     </div>
   );
 };

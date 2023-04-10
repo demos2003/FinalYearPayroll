@@ -1,11 +1,7 @@
 import React from "react";
 import "../../CSS/App.css";
-import { BsTelephone, BsPerson } from "react-icons/bs";
-import {
-  AiOutlineMail,
-  AiOutlineCalendar,
-  AiOutlineArrowRight,
-} from "react-icons/ai";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 import { BiHomeAlt } from "react-icons/bi";
 import { useState, useEffect } from "react";
 import ProfilePic from "../Components/ProfilePic";
@@ -25,8 +21,9 @@ function EmployeeSettings({ employee }) {
     phoneNo: "",
   });
 
+  const [error2, setError2] = useState("");
 
-  console.log(employee._id)
+  // console.log(employee._id);
 
   const [file, setFile] = useState(null);
 
@@ -53,11 +50,15 @@ function EmployeeSettings({ employee }) {
     try {
       const formData = new FormData();
       formData.append("profilePic", file);
-      const response = await axios.post(`${config.baseURL}/employee/profilePic/${employee._id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        `${config.baseURL}/employee/${employee._id}/profilePic`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log(response);
       alert("Profile Pic was Updated Successfully");
       setFile(null);
@@ -92,6 +93,7 @@ function EmployeeSettings({ employee }) {
       })
       .catch((error) => {
         console.error(error);
+        setError2("Please Fill all Fields");
       });
   };
   const [error, setError] = useState("");
@@ -122,81 +124,134 @@ function EmployeeSettings({ employee }) {
   setTimeout(function () {
     setError(false);
   }, 3000);
+  
 
   return (
-    <div>
-     
+    <div style={{ marginTop: 50, backgroundColor: "whitesmoke" }}>
       <div className="user-settings-content">
-      <h1 style={{ marginLeft:50}}>Edit Personal Info </h1>
+        <h4 style={{ marginLeft: 50 }}>Edit Personal Info </h4>
         <form>
           <div className="personal-information">
             <div className="user-form-item">
-              <label htmlFor="id">Id</label>
-              <div className="id">
-                <input
-                  type="text"
-                  id="id"
-                  name="id"
-                  value={userInfo._id}
-                  disabled
-                />
-              </div>
-            </div>
-            <div className="user-form-item">
-              <label htmlFor="phoneNo">Full Name</label>
-              <div className="fullname">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={userInfo.name}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className="user-form-item">
-              <label htmlFor="email">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={userInfo.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="user-form-item">
-              <label htmlFor="phoneNo">Phone Number</label>
-              <input
-                type="text"
-                id="phoneNo"
-                name="phoneNo"
-                value={userInfo.phoneNo}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="user-form-item">
-                <label htmlFor="">Position</label>
-                <input
-                type="text"
-                id="position"
-                name="position"
-                value={userInfo.position.name}
-                onChange={handleChange}
-              />
-              </div>
-            <div className="user-form-item">
-              <label htmlFor="sex">Sex</label>
-              <select
-                name="sex"
-                id="sex"
-                value={userInfo.sex}
-                onChange={handleChange}
-                disabled
+              <Box
+                component="form"
+                sx={{
+                  "& .MuiTextField-root": { m: 1, width: "40ch" },
+                }}
+                noValidate
+                autoComplete="off"
               >
-                <option value="selectuser">--Sex--</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
+                <div>
+                  <TextField
+                    id="outlined-required"
+                    label="Employee ID"
+                    value={userInfo._id}
+                    disabled
+                  />
+                </div>
+              </Box>
+            </div>
+            <div className="user-form-item">
+              <Box
+                component="form"
+                sx={{
+                  "& .MuiTextField-root": { m: 1, width: "40ch" },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <div>
+                  <TextField
+                    name="name"
+                    id="outlined-required"
+                    label="Employee Name"
+                    value={userInfo.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </Box>
+            </div>
+            <div className="user-form-item">
+              <Box
+                component="form"
+                sx={{
+                  "& .MuiTextField-root": { m: 1, width: "40ch" },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <div>
+                  <TextField
+                    id="outlined-required"
+                    label="Employee Email"
+                    value={userInfo.email}
+                    onChange={handleChange}
+                    name="email"
+                  />
+                </div>
+              </Box>
+            </div>
+            <div className="user-form-item">
+              <Box
+                component="form"
+                sx={{
+                  "& .MuiTextField-root": { m: 1, width: "40ch" },
+                }}
+                noValidate
+                autoComplete="off"
+                aria-readonly="false"
+              >
+                <div>
+                  <TextField
+                    id="outlined-required"
+                    label="Employee Phone Number"
+                    value={userInfo.phoneNo}
+                    onChange={handleChange}
+                    name="phoneNo"
+                  />
+                </div>
+              </Box>
+            </div>
+            <div className="user-form-item">
+              <Box
+                component="form"
+                sx={{
+                  "& .MuiTextField-root": { m: 1, width: "40ch" },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <div>
+                  <TextField
+                    id="outlined-required"
+                    label="EmployeePosition"
+                    value={userInfo.position ? userInfo.position.name : ""}
+                    onChange={handleChange}
+                    disabled
+                  />
+                </div>
+              </Box>
+            </div>
+            <div className="user-form-item">
+              <Box
+                component="form"
+                sx={{
+                  "& .MuiTextField-root": { m: 1, width: "40ch" },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <div>
+                  <TextField
+                    id="outlined-required"
+                    label="Employee Gender"
+                    value={userInfo.sex}
+                    onChange={handleChange}
+                    disabled
+                  />
+                </div>
+              </Box>
             </div>
           </div>
           <button
@@ -206,6 +261,12 @@ function EmployeeSettings({ employee }) {
           >
             Update
           </button>
+
+          {error2 && (
+            <div style={{ color: "red" }}>
+              <p>Please leave no fields empty</p>
+            </div>
+          )}
           <div className="user-settings-line2">
             <hr />
           </div>
@@ -236,9 +297,16 @@ function EmployeeSettings({ employee }) {
               {error1 && <p className="error">{error1}</p>}
             </>
           )}
-          <button className="addFile" onClick={handleProfilePic}>
-            Add Profile Pic
-          </button>
+          {file == null ? (
+            <button className="addFile" onClick={handleProfilePic} disabled>
+              Add Profile Pic
+            </button>
+          ) : (
+            <button className="addFile" onClick={handleProfilePic}>
+              Add Profile Pic
+            </button>
+          )}
+
           <div className="user-settings-line3">
             <hr />
           </div>
@@ -255,42 +323,73 @@ function EmployeeSettings({ employee }) {
           <form>
             <div className="change-password">
               <div className="user-form-item">
-                <label htmlFor="previous-password">Previous Password</label>
-                <input
-                  type="password"
-                  id="previous-password"
-                  onChange={(e) => setOldPassword(e.target.value)}
-                />
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "40ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    type="password"
+                    id="outlined-basic"
+                    label="Previous Password"
+                    variant="outlined"
+                    onChange={(e) => setOldPassword(e.target.value)}
+                  />
+                </Box>
               </div>
               <div className="user-form-item">
-                <label htmlFor="new-password">New Password</label>
-                <input
-                  type="password"
-                  id="new-password"
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "40ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    type="password"
+                    id="outlined-basic"
+                    label="New Password"
+                    variant="outlined"
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                </Box>
               </div>
               <div className="user-form-item">
-                <label htmlFor="confirm-new-password">
-                  Confirm New Password
-                </label>
-                <input
-                  type="password"
-                  id="confirm-new-password"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "40ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    type="password"
+                    id="outlined-basic"
+                    label=" Confirm New Password"
+                    variant="outlined"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </Box>
               </div>
             </div>
             <div className="password-do-not-match" style={{ color: "red" }}>
               {error}
             </div>
-            <button onClick={handleSubmit} className="confirmPass">Confirm Password</button>
+            <button onClick={handleSubmit} className="confirmPass">
+              Confirm Password
+            </button>
           </form>
           <div className="user-settings-line3">
             <hr />
           </div>
         </div>
       </div>
+      <div style={{ height: 50 }}></div>
     </div>
   );
 }
