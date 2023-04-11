@@ -45,6 +45,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
+   
 
 
 }
@@ -56,6 +57,7 @@
     max-width: 640px;
     background-color: white;
     border-radius: 10px;
+    transition: 5s;
 
 }
 

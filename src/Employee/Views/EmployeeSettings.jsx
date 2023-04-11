@@ -22,6 +22,7 @@ function EmployeeSettings({ employee }) {
   });
 
   const [error2, setError2] = useState("");
+  const [setDisabled, setIsDisabled] = useState(true);
 
   // console.log(employee._id);
 
@@ -82,6 +83,11 @@ function EmployeeSettings({ employee }) {
     setUserInfo((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleEditChange = (event) => {
+    handleChange(event);
+    setIsDisabled(event.target.value === "");
+  };
+
   const handleUpdate = (event) => {
     event.preventDefault();
     //update user data in API using axios.put
@@ -124,7 +130,6 @@ function EmployeeSettings({ employee }) {
   setTimeout(function () {
     setError(false);
   }, 3000);
-  
 
   return (
     <div style={{ marginTop: 50, backgroundColor: "whitesmoke" }}>
@@ -166,7 +171,7 @@ function EmployeeSettings({ employee }) {
                     id="outlined-required"
                     label="Employee Name"
                     value={userInfo.name}
-                    onChange={handleChange}
+                    onChange={handleEditChange}
                     required
                   />
                 </div>
@@ -186,7 +191,7 @@ function EmployeeSettings({ employee }) {
                     id="outlined-required"
                     label="Employee Email"
                     value={userInfo.email}
-                    onChange={handleChange}
+                    onChange={handleEditChange}
                     name="email"
                   />
                 </div>
@@ -207,7 +212,7 @@ function EmployeeSettings({ employee }) {
                     id="outlined-required"
                     label="Employee Phone Number"
                     value={userInfo.phoneNo}
-                    onChange={handleChange}
+                    onChange={handleEditChange}
                     name="phoneNo"
                   />
                 </div>
@@ -256,11 +261,54 @@ function EmployeeSettings({ employee }) {
           </div>
           <button
             type="submit"
+            disabled={setDisabled}
             onClick={handleUpdate}
-            className="update-btn-user"
+            className={
+              setDisabled ? "update-btn-user-disabled" : "update-btn-user"
+            }
           >
-            Update
+            Submit
           </button>
+          {/* {
+            (setDisabled = true ? (
+              <button
+                type="submit"
+                onClick={handleUpdate}
+                className="update-btn-user"
+                disabled = {setDisabled}
+                style={{ backgroundColor: "red" }}
+              >
+                Update
+              </button>
+            ) : (
+              <button
+                type="submit"
+                onClick={handleUpdate}
+                className="update-btn-user"
+              >
+                Update
+              </button>
+            ))
+          } */}
+          {/* {(userInfo.name.length || userInfo.email.length )  == 0 ? (
+            <button
+              type="submit"
+              onClick={handleUpdate}
+              className="update-btn-user"
+              disabled
+              style={{backgroundColor:"red"}}
+            >
+              Update
+            </button>
+          ) : (
+            <button
+              type="submit"
+              onClick={handleUpdate}
+              className="update-btn-user"
+            >
+              Update
+            </button>
+          )} */}
 
           {error2 && (
             <div style={{ color: "red" }}>

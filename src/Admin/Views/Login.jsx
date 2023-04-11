@@ -8,6 +8,7 @@ import { useContext, useRef } from "react";
 import { adminContext } from "../../Context/Context";
 import { useState } from "react";
 import { BiError } from "react-icons/bi";
+import {IoIosArrowRoundBack} from "react-icons/io"
 
 function Login() {
   const userRef = useRef();
@@ -32,9 +33,16 @@ function Login() {
   };
 
   return (
-    <div className="color">
+    <div className="Acolor">
       <div className="form-arr">
-        <h4 style={{ textAlign: "center" }}>Admin Login</h4>
+        <Link to="/">
+          <button className="login_btn">
+             <IoIosArrowRoundBack/>
+          </button>
+
+        </Link>
+
+        <h4 style={{ textAlign: "center", marginBottom:20  }}>Admin Login</h4>
         <form onSubmit={handleSubmit}>
           <label>
             <div className="field-holder">

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import Searchbar from "../Components/Searchbar";
 import config from "../../config";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PayrollTable from "../Components/PayrollTable";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -12,8 +12,17 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Popup2 from "../Components/Popup2";
+import {MdCancel} from "react-icons/md"
+import PdFView from "../Components/pdfViewer";
+import { useReactToPrint } from "react-to-print";
+
 
 const AdminPayroll = () => {
+
+
+  
+  const [buttonPopup2, setBP2] = useState(false);
   const [employeePay, getEmployeePay] = useState([]);
   useEffect(() => {
     const fetchPayData = async () => {
@@ -44,35 +53,25 @@ const AdminPayroll = () => {
     },
   }));
 
-  const empPay = employeePay.monthlyPays;
+  const componentPDF = useRef()
 
-  const Loop = ({ empPay, employeePay }) => {
-    console.log(employeePay);
+  const generatePDF = useReactToPrint({
+    content: () => componentPDF.current,
+    documentTitle:"employeePay",
+    onAfterPrint:() => alert("Data is saved in pdf ")
+  });
 
+  const AdditionalTextComponent = () => {
     return (
-      <div>
-        {empPay.map((item) => (
-          <StyledTableRow>
-            <StyledTableCell className="columnWidth2">
-              {item.employee.name}
-            </StyledTableCell>
-            <StyledTableCell className="columnWidth2">
-              {item.employee._id}
-            </StyledTableCell>
-            <StyledTableCell className="columnWidth2">
-              N{item.totalPay}
-            </StyledTableCell>
-          </StyledTableRow>
-        ))}
-        <div className="totalPay">
-          <p className="totalPayText"> Total Monthly Employee Pay</p>
-          <p className="TotalPayField totalPayText">
-            ₦{employeePay.totalMonthlyPay}
-          </p>
-        </div>
+      <div style={{display:"none"}}>
+        <p>This is some additional text that will be included in the PDF.</p>
       </div>
     );
   };
+
+  const empPay = employeePay.monthlyPays;
+
+  
 
   return (
     <div className="">
@@ -81,16 +80,23 @@ const AdminPayroll = () => {
           <h4>Payroll</h4>
 
           <div className="payrollHeader">
-            <button className="payslipBtn">PaySlip</button>
+            <button className="payslipBtn" onClick={ generatePDF }>PaySlip</button>
+            <Popup2 trigger={buttonPopup2} setTrigger={setBP2}>
+          <div className="popup_content">
+          <PdFView/>
+          </div>
+        </Popup2>
             <Searchbar />
           </div>
         </div>
-        <div style={{ width: 900, height: 55 }}>
+        <div  style={{ width: 900, height: 55 }}>
+          <div ref={componentPDF}>
           <TableContainer
             component={Paper}
             style={{ marginTop: 20, marginBottom: 20 }}
-            id="TableCont"
+            // id="TableCont"
           >
+            
             <Table sx={{ minWidth: 550 }} aria-label="customized table">
               <TableHead style={{ position: "sticky", top: 0, zIndex: 0, backgroundColor:"white" }}>
                 <TableRow>
@@ -122,12 +128,14 @@ const AdminPayroll = () => {
                 <>Loading</>
               )}
             </Table>
+           <AdditionalTextComponent />
           </TableContainer>
           <div className="totalPay">
           <p className="totalPayText"> Total Monthly Employee Pay</p>
-          <p className="TotalPayField totalPayText">
+          <p className="TotalPaField totalPyText">
             ₦{employeePay.totalMonthlyPay}
           </p>
+        </div>
         </div>
 
           <div className="pos-longBtn">{/* <LongBtn /> */}</div>

@@ -39,7 +39,7 @@ function RecFace() {
       console.log("PayLoad: ", userData.payload);
     } catch (errorCode) {
       console.log(errorCode);
-      handleError(errorCode);
+      // handleError(errorCode);
     }
   };
 

@@ -102,6 +102,7 @@ function PositionBtn({ positionItem }) {
               class="btn btn-primary save-btn"
               id="btn-space"
               onClick={handleUpdate}
+              disabled={!name || !pay}
             >
               Save
             </button>

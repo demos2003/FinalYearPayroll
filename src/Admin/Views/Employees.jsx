@@ -32,67 +32,6 @@ function Employees() {
   const [error2, setError2] = useState(false);
   const [faceId, setFaceId] = useState(null);
 
-  // const [faceioInstance, setFaceioInstance] = useState(null);
-
-  // const handleFaceIoInstance = (instance) => {
-  //   setFaceioInstance(instance);
-  // };
-
-  // let faceioInstance = null
-
-  // useEffect(() => {
-  //   const faceIoScript = document.createElement("script");
-  //   faceIoScript.src = "//cdn.faceio.net/fio.js";
-  //   faceIoScript.async = true;
-  //   faceIoScript.onload = () => faceIoScriptLoaded();
-  //   document.body.appendChild(faceIoScript);
-
-  //   return () => {
-  //     document.body.removeChild(faceIoScript);
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
-  // const faceIoScriptLoaded = () => {
-  //   // const faceIo = window.faceIO;
-  //   if (faceI0 && !faceioInstance) {
-  //     faceioInstance = new faceIO('fioa5c55')
-  //   }
-  // };
-
-  // const faceRegistration = async () => {
-  //   try {
-  //     const userInfo = await faceioInstance.enroll({
-  //       locale: "auto",
-
-  //     })
-  //     console.log(userInfo)
-  //     console.log('Unique Facial ID: ', userInfo.facialId)
-  //     console.log('Enrollment Date: ', userInfo.timestamp)
-  //     console.log('Gender: ', userInfo.details.gender)
-  //     console.log('Age Approximation: ', userInfo.details.age)
-  //   } catch (errorCode) {
-  //     console.log(errorCode)
-  //     handleError(errorCode)
-  //   }
-  // }
-
-  // const faceSignIn = async () => {
-  //   try {
-  //     console.log(faceioInstance)
-  //     const userData = await faceioInstance.authenticate({
-  //       locale: "auto",
-  //     })
-  //     console.log(userData)
-
-  //     console.log('Unique Facial ID: ', userData.facialId)
-  //     console.log('PayLoad: ', userData.payload)
-  //   } catch (errorCode) {
-  //     console.log(errorCode)
-  //     handleError(errorCode)
-  //   }
-  // }
-
   const [file, setFile] = useState(null);
 
   const handleFileChange1 = (event) => {
@@ -117,9 +56,9 @@ function Employees() {
         password,
       });
       res.data && window.location.reload();
-      
+
     } catch (err) {
-      setError2("Error: Please Fill all fields");
+      // setError2("Error: Please Fill all fields");
     }
   };
 
@@ -164,6 +103,8 @@ function Employees() {
       border: 0,
     },
   }));
+
+  
 
   return (
     <div>
@@ -276,7 +217,7 @@ function Employees() {
               <button type="submit" className="btn btn-primary save-btn">
                 Save
               </button>
-              {error2 && <div style={{ color: "red" }}>{error2}</div>}
+              {/* {error2 && <div style={{ color: "red" }}>{error2}</div>} */}
             </form>
           </Popup1>
           <div
@@ -290,7 +231,14 @@ function Employees() {
               id="TableCont"
             >
               <Table sx={{ minWidth: 550 }} aria-label="customized table">
-                <TableHead style={{ position: "sticky", top: 0, zIndex: 0, backgroundColor:"white" }}>
+                <TableHead
+                  style={{
+                    position: "sticky",
+                    top: 0,
+                    zIndex: 0,
+                    backgroundColor: "white",
+                  }}
+                >
                   <TableRow>
                     <TableCell className="columnWidth">Employee ID</TableCell>
                     <TableCell className="columnWidth">Name</TableCell>

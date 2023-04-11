@@ -39,7 +39,7 @@ function FaceRec() {
       console.log('Age Approximation: ', userInfo.details.age)
     } catch (errorCode) {
       console.log(errorCode)
-      handleError(errorCode)
+      // handleError(errorCode)
     }
   }
 
@@ -56,7 +56,7 @@ function FaceRec() {
       console.log('PayLoad: ', userData.payload)
     } catch (errorCode) {
       console.log(errorCode)
-      handleError(errorCode)
+      // handleError(errorCode)
     }
   }
   

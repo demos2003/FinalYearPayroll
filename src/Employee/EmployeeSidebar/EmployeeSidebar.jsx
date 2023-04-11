@@ -7,6 +7,7 @@ import { Avatar } from "@mui/material";
 import StaffLogOut from "../Components/StaffLogOut";
 import {IoSettingsOutline} from "react-icons/io5"
 import {MdOutlinePayments} from "react-icons/md"
+import SideBarProfilePic from "../Components/SideBarProfilePic";
 
 const EmployeeSidebar = ({ employee }) => {
   const [open, setOpen] = React.useState(false);
@@ -20,7 +21,8 @@ const EmployeeSidebar = ({ employee }) => {
               <div className="head1">
                 <h5 style={{ color: "white" }}>USER PANEL</h5>
               </div>
-              <Avatar src="/broken-image.jpg" />
+              {/* <Avatar src="/broken-image.jpg" /> */}
+              <SideBarProfilePic employee={employee}/>
 
               <div className="dropdown">
                 <div className="logout-dropdown">

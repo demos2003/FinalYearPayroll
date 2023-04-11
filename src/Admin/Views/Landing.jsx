@@ -31,11 +31,17 @@ const Landing = () => {
                 
             </div> */}
         <div className="BannerImage">
-          <img
-            src="/images/bannerImage.jpg"
-            className="bannerimage"
-            alt="pic"
-          />
+          <img src="/images/payroll.jpg" className="bannerimage" alt="pic" />
+          <div style={{ marginTop: 200 }}>
+            <h1>
+              Automated Payroll System with GPS tracking and Image Capture
+              Capabilities
+            </h1>
+            <p style={{ color: "#5d3fd3" }}>
+              <span style={{ color: "black" }}> BY:</span> NASIRU IYIDEMILADE &
+              UGO JUSTICE
+            </p>
+          </div>
         </div>
       </div>
       <div className="founders">
@@ -58,8 +64,11 @@ const Landing = () => {
             </p>
           </div>
           <div className="aboutus-button">
-            <button>Administrator</button>
-            <Link to="/apply">
+            <Link to="" style={{ textDecoration: "none" }}>
+              <button>Administrator</button>
+            </Link>
+
+            <Link to="/apply" style={{ textDecoration: "none" }}>
               <button>Employee</button>
             </Link>
           </div>
