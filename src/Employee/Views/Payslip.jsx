@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import config from "../../config";
+import { AiOutlineClose } from "react-icons/ai";
+import PdFView from "../../Admin/Components/pdfViewer";
 
 export const Payslip = ({ employee }) => {
   const [positonId, getPositionId] = useState([]);
@@ -83,6 +85,8 @@ export const Payslip = ({ employee }) => {
     const statusStyle = {
       color: item.late ? "red" : "green",
     };
+
+    // console.log(item)
     return (
       <div>
         <div
@@ -103,9 +107,11 @@ export const Payslip = ({ employee }) => {
     (a, b) => new Date(b.date) - new Date(a.date)
   );
 
-  const Slice = sortedAttendance.slice(0,5)
+  const Slice = sortedAttendance.slice(0, 5);
 
-  console.log(Slice)
+  // console.log(Slice);
+
+  const [paySlip, setPaySlip] = useState(false);
 
   return (
     <div className="payslipHolder">
@@ -135,22 +141,22 @@ export const Payslip = ({ employee }) => {
       </div>
       <div className="TagIndicator">
         <div className="infoTags">
-          <h5>{pay.totalPay}</h5>
+          <h5>₦{pay.totalPay}</h5>
           <h6>Total Earnings</h6>
         </div>
         <div className="infoTags1">
-          <h5>34,000.00</h5>
-          <h6>Total Earnings</h6>
+          <h5>₦100,000.00</h5>
+          <h6>Est. Total Earnings</h6>
         </div>
         <div className="infoTags">
-          <h5>34,000.00</h5>
-          <h6>Total Earnings</h6>
+          <h5>16</h5>
+          <h6>No of days Present</h6>
         </div>
         <div className="infoTags2">
           <h5>34,000.00</h5>
           <h6>Total Earnings</h6>
         </div>
-        <div className="infoTags">
+        {/* <div className="infoTags">
           <h5>34,000.00</h5>
           <h6>Total Earnings</h6>
         </div>
@@ -161,12 +167,52 @@ export const Payslip = ({ employee }) => {
         <div className="infoTags">
           <h5>34,000.00</h5>
           <h6>Total Earnings</h6>
-        </div>
+        </div> */}
       </div>
       <div>
         <div className="paySlipPage">
           <div className="PaySlipInfo">
-            <h5>Attendance History</h5>
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <h5>Attendance History</h5>
+
+                <button
+                  className="signin-btn"
+                  style={{ width: 100 }}
+                  onClick={() => setPaySlip(true)}
+                  type="submit"
+                >
+                  View PDF
+                </button>
+              </div>
+              {paySlip && (
+                <div className="popup2">
+                  <div className="popup2-inner">
+                    <div
+                      className="close-btn"
+                      onClick={() => setPaySlip(false)}
+                    >
+                      <AiOutlineClose className="close-icon" />
+                    </div>
+                    <div style={{ justifyContent: "center" }}>
+                      <PdFView employee={employee} pay={pay.totalPay}/>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {/* <AttendancePopUp
+          trigger={takeAttendance}
+          setTrigger={setTakeAttendance}
+        >
+          <h1>Attendance Captured Successfully</h1>
+        </AttendancePopUp> */}
+            </div>
             <hr />
             {Slice.map((item) => (
               <AttendanceHistory item={item} />

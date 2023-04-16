@@ -269,46 +269,6 @@ function EmployeeSettings({ employee }) {
           >
             Submit
           </button>
-          {/* {
-            (setDisabled = true ? (
-              <button
-                type="submit"
-                onClick={handleUpdate}
-                className="update-btn-user"
-                disabled = {setDisabled}
-                style={{ backgroundColor: "red" }}
-              >
-                Update
-              </button>
-            ) : (
-              <button
-                type="submit"
-                onClick={handleUpdate}
-                className="update-btn-user"
-              >
-                Update
-              </button>
-            ))
-          } */}
-          {/* {(userInfo.name.length || userInfo.email.length )  == 0 ? (
-            <button
-              type="submit"
-              onClick={handleUpdate}
-              className="update-btn-user"
-              disabled
-              style={{backgroundColor:"red"}}
-            >
-              Update
-            </button>
-          ) : (
-            <button
-              type="submit"
-              onClick={handleUpdate}
-              className="update-btn-user"
-            >
-              Update
-            </button>
-          )} */}
 
           {error2 && (
             <div style={{ color: "red" }}>

@@ -316,7 +316,7 @@ Svg {
 .cardhold {
   display: flex;
   flex-direction: row;
-
+  /* background-color: pink; */
   width: 98% !important;
   margin-top: 40px;
 }
@@ -515,13 +515,13 @@ Svg {
 
 .update-btn-user {
   margin-top: 2% !important;
-  width: 800px;
+  width: 90%;
   margin-left: 50px;
 }
 
 .update-btn-user-disabled {
   margin-top: 2% !important;
-  width: 800px;
+  width: 90%;
   margin-left: 50px;
   background-color: #7f6ad3 !important;
 }
@@ -529,7 +529,7 @@ Svg {
 .personal-information {
   margin-top: 20px;
   display: flex;
-  width: 800px;
+  width: 90%;
   justify-content: space-between;
   flex-wrap: wrap;
   height: 300px;
@@ -587,6 +587,10 @@ Svg {
   justify-content: space-around;
   height: 70px;
 }
+
+body {
+  background-color: whitesmoke !important;
+}
 .user-change-password form button {
   background-color: #28b498;
   color: white;
@@ -599,7 +603,7 @@ Svg {
 .change-password {
   display: flex;
   flex-direction: row;
-  width: 800px;
+  width: 90%;
 }
 .change-password .user-form-item label {
   font-weight: 600;
@@ -744,7 +748,7 @@ Svg {
 
 .confirmPass {
   background-color: #5d3fd3 !important;
-  width: 800px;
+  width: 90% !important;
 }
 
 .payrollHeader {
@@ -834,8 +838,7 @@ Svg {
   background: #555;
 }
 
-
-.remove-file{
+.remove-file {
   background-color: #5d3fd3;
   margin-right: 20px;
   border: 1px solid #5d3fd3;
@@ -844,20 +847,92 @@ Svg {
   border-radius: 2px;
 }
 
-.login_btn{
+.login_btn {
   background-color: white;
   border: 2px solid rgb(219, 216, 216);
   border-radius: 4px;
 }
 
-.close-icon{
+.close-icon {
   color: #5d3fd3;
   font-size: 20px;
 }
 
-.close-icon:hover{
+.close-icon:hover {
   border: 2px solid rgb(236, 236, 236);
   padding: 3px;
- transition: 1s;
+  transition: 1s;
+}
 
+.top_card {
+  width: 100%;
+}
+
+@media screen and (min-width: 1920px) {
+  .top_card {
+    margin-top: 60px;
+    width: 100%;
+  }
+
+  .dashboard_card {
+    height: 250px;
+  }
+
+  .info_layer {
+    margin-top: 80px !important;
+  }
+
+  .cardText {
+    color: rgb(170, 170, 170);
+    font-size: 20px !important;
+    margin-bottom: 20px;
+  }
+  .cardText2 {
+    font-size: 40px !important;
+  }
+
+  .layer2-left {
+    background-color: white;
+    width: 66%;
+    height: 633px !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .layer2-right {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 0px !important;
+  }
+
+  .layer2-right-top {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 5px;
+    width: 425px !important;
+    background-color: white !important;
+  }
+
+  .screen1920 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 40px;
+  }
+
+  .donut {
+    height: 200px !important;
+    margin-bottom: 70px !important;
+  }
+  .layer2-right-bottom {
+    height: 900px !important;
+  }
+
+  .top_card {
+    margin-left: -50px;
+  }
+
+  .attendTable {
+    width: 95% !important;
+    margin-left: 0px !important;
+    height: 90vh;
+  }
 }

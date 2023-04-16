@@ -27,7 +27,7 @@ const ProfilePic = ({ employee }) => {
           <img src={image} alt="" width={150} height={150} className="profilePic" />
         </div>
       ) : (
-        <FaRegUserCircle className="icon9" />
+        <FaRegUserCircle className="icon9" fontSize={120} />
       )}
     </div>
   );

@@ -27,7 +27,7 @@ const SideBarProfilePic = ({ employee }) => {
           <img src={image} alt="" width={90} height={90} className="profilePic2" />
         </div>
       ) : (
-        <FaRegUserCircle className="icon9" />
+        <FaRegUserCircle className="icon9" fontSize={80} />
       )}
     </div>
   );

@@ -8,17 +8,20 @@ import { useContext, useRef } from "react";
 import { adminContext } from "../../Context/Context";
 import { useState } from "react";
 import { BiError } from "react-icons/bi";
-import {IoIosArrowRoundBack} from "react-icons/io"
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { InfinitySpin } from "react-loader-spinner";
 
 function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(adminContext);
   const [errorMessage, setErrorMessage] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
+    setIsLoading(true);
     try {
       const res = await axios.post(`${config.baseURL}/auth/login/admin`, {
         email: userRef.current.value,
@@ -28,7 +31,13 @@ function Login() {
       res.data && window.location.replace("/dashboard");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
-      setErrorMessage("Incorrect Email or Password");
+      // console.log(err.response.status)
+      if(err.response.status === 401){
+        setErrorMessage("Incorrect Email or Password");
+      } else if (err.request) {
+        setErrorMessage("Network Error");
+      }
+    
     }
   };
 
@@ -37,12 +46,11 @@ function Login() {
       <div className="form-arr">
         <Link to="/">
           <button className="login_btn">
-             <IoIosArrowRoundBack/>
+            <IoIosArrowRoundBack />
           </button>
-
         </Link>
 
-        <h4 style={{ textAlign: "center", marginBottom:20  }}>Admin Login</h4>
+        <h4 style={{ textAlign: "center", marginBottom: 20 }}>Admin Login</h4>
         <form onSubmit={handleSubmit}>
           <label>
             <div className="field-holder">
@@ -74,13 +82,24 @@ function Login() {
               </div>
             </div>
           </label>
-
-          <input
+          {isLoading ? (
+            <button
             type="submit"
-            value="Sign in"
-            className="signin-btn"
-            style={{ width: "100%", marginBottom: 10 }}
-          />
+              value="Sign in"
+              className="signin-btn"
+              style={{ width: "100%", marginBottom: 10, paddingRight:60 }}
+            
+            >
+               <InfinitySpin width="80" color="white" />
+            </button>
+          ) : (
+            <input
+              type="submit"
+              value="Sign in"
+              className="signin-btn"
+              style={{ width: "100%", marginBottom: 10 }}
+            />
+          )}
           {errorMessage && (
             <div
               className="error-message"

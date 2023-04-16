@@ -54,34 +54,34 @@
 
 .infoTags{
     background-color: plum;
-    width: 130px;
+    width: 200px;
     height: 60px;
-    margin-left: 15px;
+    margin-left: 35px;
     text-align: center;
 
 }
 .infoTags1{
     background-color: aquamarine;
-    width: 130px;
+    width: 200px;
     height: 60px;
-    margin-left: 15px;
+    margin-left: 25px;
     text-align: center;
     color: grey;
 
 }
 .infoTags2{
     background-color: darksalmon;
-    width: 130px;
+    width: 200px;
     height: 60px;
-    margin-left: 15px;
+    margin-left: 25px;
     text-align: center;
 
 }
 .infoTags3{
     background-color: lightgreen;
-    width: 130px;
+    width: 200px;
     height: 60px;
-    margin-left: 15px;
+    margin-left: 25px;
     text-align: center;
 }
 
@@ -129,4 +129,16 @@
 .attendanceHolderRow{
     height: 20px;
     justify-content: space-between;
+}
+
+.attendanceHolderRow2{
+    height: 12px;
+    justify-content: space-between;
+}
+
+.payslipTable{
+    margin-bottom: 30px;
+    border: 1px solid black;
+    height: 30px;
+    padding: 3px;
 }

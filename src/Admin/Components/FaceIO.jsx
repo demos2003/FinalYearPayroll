@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 
 
-function FaceRec() {
+function FaceRec({faceID, setFaceID}) {
   let faceioInstance = null
 
   useEffect(() => {
@@ -19,9 +19,9 @@ function FaceRec() {
   }, [])
 
   const faceIoScriptLoaded = () => {
-    console.log(faceIO)
+    // console.log(faceIO)
     if (faceIO && !faceioInstance) {
-      faceioInstance = new faceIO('fioade7a')
+      faceioInstance = new faceIO('fioaa8f3')
     }
   }
 
@@ -33,10 +33,12 @@ function FaceRec() {
         
       })
       console.log(userInfo)
-      console.log('Unique Facial ID: ', userInfo.facialId)
+      // console.log('Unique Facial ID: ', userInfo.facialId)
       console.log('Enrollment Date: ', userInfo.timestamp)
       console.log('Gender: ', userInfo.details.gender)
       console.log('Age Approximation: ', userInfo.details.age)
+      faceID(userInfo.facialId)
+      console.log(faceID)
     } catch (errorCode) {
       console.log(errorCode)
       // handleError(errorCode)
@@ -52,7 +54,7 @@ function FaceRec() {
       })
       console.log(userData)
   
-      console.log('Unique Facial ID: ', userData.facialId)
+      // console.log('Unique Facial ID: ', userData.facialId)
       console.log('PayLoad: ', userData.payload)
     } catch (errorCode) {
       console.log(errorCode)
@@ -65,7 +67,7 @@ function FaceRec() {
     <div className="face-authentication-by-thanhphongdev flex fdc jcfc aic">
       
       <button className="action face-registration" onClick={faceRegistration}>Face Registration</button>
-      {/* <button className="action face-sign-in" onClick={faceSignIn}>Face Sign In</button> */}
+      <button className="action face-sign-in" onClick={faceSignIn}>Face Sign In</button>
       
     </div>
 

@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { AttendancePopUp } from "../Components/AttendancePopUp";
 import config from "../../config";
 import axios from "axios";
+import { AiOutlineClose } from "react-icons/ai";
+import { FcCancel } from "react-icons/fc";
+import { TiTick } from "react-icons/ti";
 
 export const StaffAttendance = ({ employee }) => {
   return (
@@ -13,12 +16,8 @@ export const StaffAttendance = ({ employee }) => {
         <DisabledForm employee={employee} />
       </div>
     </div>
-    
   );
-  
 };
-
-
 
 function Clock() {
   const [time, setTime] = useState(new Date());
@@ -103,19 +102,51 @@ function Location() {
   );
 }
 
-const DisabledForm = ({ name,  time, day, location, employee }) => {
+const DisabledForm = ({ name, time, day, location, employee }) => {
+  // const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
   // console.log(employee._id)
   const [takeAttendance, setTakeAttendance] = useState(false);
-  const [empID, setEmpID] = useState("")
+  const [empID, setEmpID] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${config.baseURL}/attendance/${employee._id}`, {
-         employeeId : employee._id,
-      });
+      const res = await axios.post(
+        `${config.baseURL}/attendance/${employee._id}`,
+        {
+          employeeId: employee._id,
+        }
+      );
+      setTakeAttendance(true);
+      setModalMessage(
+        <div>
+          <div>
+            <TiTick fontSize={50} />
+            Attendance recorded successfully
+          </div>
+          <p style={{ fontSize: 12, textAlign: "left" }}>
+            <span style={{ fontWeight: 700 }}>NOTE:</span>Recorded Attendance
+            doesnt signify on Time attendace, check attendance history to view
+            attendance Status
+          </p>
+        </div>
+      );
+
       res.data && window.location.reload();
     } catch (err) {
-      alert("Failed to Upload");
+      setTakeAttendance(true);
+      setModalMessage(
+        <div>
+          <div style={{width:570}}>
+            <hr/>
+            <FcCancel fontSize={50} />
+            Failed to record attendance
+            <hr/>
+            <p style={{fontSize:12, textAlign:"left"}}><span style={{fontWeight:700}}>NOTE:</span> Please Retry at Time allocated for attendance</p>
+          </div>
+        </div>
+      );
     }
   };
 
@@ -135,9 +166,8 @@ const DisabledForm = ({ name,  time, day, location, employee }) => {
           </label>
           <br />
           <input
-          value={employee._id}
-          // onChange={(e) => setEmpID(e.target.value)}
-
+            value={employee._id}
+            // onChange={(e) => setEmpID(e.target.value)}
           />
         </div>
         <div className="form-item">
@@ -172,17 +202,38 @@ const DisabledForm = ({ name,  time, day, location, employee }) => {
         <button
           className="signin-btn"
           style={{ marginTop: 20 }}
-          // onClick={() => setTakeAttendance(true)}
+          onClick={() => setTakeAttendance(true)}
           type="submit"
         >
           Take Attendance
         </button>
-        <AttendancePopUp
+        {takeAttendance && (
+          <div className="popup2">
+            <div className="popup2-inner">
+              <div
+                className="close-btn"
+                onClick={() => setTakeAttendance(false)}
+              >
+                <AiOutlineClose className="close-icon" />
+              </div>
+              <div style={{ justifyContent: "center" }}>
+                <h2>Confirm Attendance</h2>
+                
+                <h5 style={{ textAlign: "center", marginRight: 65 }}>
+                  {modalMessage}
+                </h5>
+               
+                
+              </div>
+            </div>
+          </div>
+        )}
+        {/* <AttendancePopUp
           trigger={takeAttendance}
           setTrigger={setTakeAttendance}
         >
           <h1>Attendance Captured Successfully</h1>
-        </AttendancePopUp>
+        </AttendancePopUp> */}
       </div>
     </form>
   );

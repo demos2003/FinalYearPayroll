@@ -17,12 +17,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import { RotatingLines } from "react-loader-spinner";
 
 function Position() {
   const [name, setNewName] = useState("");
   const [pay, setPay] = useState("");
   const [error, setError] = useState(false);
-  const [error2, setError2] = useState("")
+  const [error2, setError2] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,18 +34,19 @@ function Position() {
       });
       res.data && window.location.reload();
     } catch (err) {
-      setError2("Please Fill all Fields")
+      setError2("Please Fill all Fields");
     }
   };
 
   const [positonId, getPositionId] = useState([]);
+  const [isPositionId, isGetPositionId] = useState(false);
   useEffect(() => {
     const fetchpositonData = async () => {
       const res = await axios.get(`${config.baseURL}/position`);
       getPositionId(res.data);
+      isGetPositionId(true);
     };
     fetchpositonData();
-    
   }, []);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -69,16 +71,16 @@ function Position() {
 
   const [addPopUp, setAddPopUp] = useState(false);
 
-  // if(loading1){
-  //   return <div>
-  //     <>Loading</>
-  //   </div>;
-  // }
   return (
     <div style={{ marginTop: 45 }}>
-      <button className="AddEmployee2" onClick={() => setAddPopUp(true)}>
+      <button
+        className="AddEmployee2"
+        onClick={() => setAddPopUp(true)}
+        style={{ marginBottom: 50 }}
+      >
         Add
       </button>
+
       <PopUp3
         trigger={addPopUp}
         setTrigger={setAddPopUp}
@@ -112,15 +114,15 @@ function Position() {
           </div>
           {error2 && (
             <div>
-              <p style={{color:"red"}}>{error2}</p>
+              <p style={{ color: "red" }}>{error2}</p>
             </div>
           )}
         </form>
       </PopUp3>
-      <div style={{ width: 990, height: 555 }} className="positionHold">
+      <div style={{ width: "95%" }} className="positionHold">
         <TableContainer
           component={Paper}
-          style={{ width: 890, marginLeft: 46, marginBottom: 40 }}
+          style={{ width: "95%", marginLeft: 20, marginBottom: 40 }}
         >
           <Table sx={{ minWidth: 550 }} aria-label="customized table">
             <TableHead>
@@ -132,21 +134,37 @@ function Position() {
                 <TableCell className="columnWidth">Tools &nbsp;</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
-              {positonId.map((item) => (
-                <StyledTableRow>
-                   <StyledTableCell className="columnWidth">
-                  {item.name.toUpperCase()}
-                  </StyledTableCell>
-                  <StyledTableCell className="columnWidth">
-                    {item.pay}
-                  </StyledTableCell>
-                  <StyledTableCell className="columnWidth">
-                    <PositionBtn positionItem={item._id} item={item} />
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
+            {isPositionId ? (
+              <TableBody>
+                {positonId.map((item) => (
+                  <StyledTableRow>
+                    <StyledTableCell className="columnWidth">
+                      {item.name.toUpperCase()}
+                    </StyledTableCell>
+                    <StyledTableCell className="columnWidth">
+                      {item.pay}
+                    </StyledTableCell>
+                    <StyledTableCell className="columnWidth">
+                      <PositionBtn positionItem={item._id} item={item} />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            ) : (
+              <div className="loadingArea">
+                <div className="RL">
+                  <RotatingLines
+                    strokeColor="#7f6ad3
+                    "
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    width="56"
+                    visible={true}
+                  />
+                
+                </div>
+              </div>
+            )}
           </Table>
         </TableContainer>
 

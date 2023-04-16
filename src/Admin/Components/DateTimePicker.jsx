@@ -66,20 +66,20 @@ function DateTimePicker({ lateness }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="datePickerHolder">
-        <label style={{ display: "flex", flexDirection: "column" }}>
+        <label style={{ display: "flex", flexDirection: "column" , width:"50%" }}>
           Start Date:
           <input
-            className="form-inputs"
+            className="form-inputs datePicker"
             type="date"
             value={startDate.toISOString().substr(0, 10)}
             onChange={(event) => setStartDate(new Date(event.target.value))}
           />
         </label>
 
-        <label style={{ display: "flex", flexDirection: "column" }}>
+        <label style={{ display: "flex", flexDirection: "column" , width:"50%" }}>
           Start Time:
           <input
-            className="form-inputs"
+            className="form-inputs datePicker"
             type="time"
             value={startTime2}
             onChange={(event) => setStartTime(event.target.value)}
@@ -88,10 +88,10 @@ function DateTimePicker({ lateness }) {
       </div>
       <br />
       <div className="datePickerHolder">
-        <label style={{ display: "flex", flexDirection: "column" }}>
+        <label style={{ display: "flex", flexDirection: "column" , width:"50%" }}>
           Late Start Date:
           <input
-            className="form-inputs"
+            className="form-inputs datePicker"
             type="date"
             value={lateMarkStartDate.toISOString().substr(0, 10)}
             onChange={(event) =>
@@ -99,10 +99,10 @@ function DateTimePicker({ lateness }) {
             }
           />
         </label>
-        <label style={{ display: "flex", flexDirection: "column" }}>
+        <label style={{ display: "flex", flexDirection: "column" , width:"50%" }}>
           Late Start Time:
           <input
-            className="form-inputs"
+            className="form-inputs datePicker"
             type="time"
             value={lateMarkStartTime2}
             onChange={(event) => setLateMarkStartTime(event.target.value)}
@@ -111,10 +111,10 @@ function DateTimePicker({ lateness }) {
       </div>
       <br />
       <div className="datePickerHolder">
-        <label style={{ display: "flex", flexDirection: "column" }}>
+        <label style={{ display: "flex", flexDirection: "column" , width:"50%" }}>
           End Date:
           <input
-            className="form-inputs"
+            className="form-inputs datePicker1"
             type="date"
             value={lateMarkEndDate.toISOString().substr(0, 10)}
             onChange={(event) =>
@@ -122,10 +122,10 @@ function DateTimePicker({ lateness }) {
             }
           />
         </label>
-        <label style={{ display: "flex", flexDirection: "column" }}>
+        <label style={{ display: "flex", flexDirection: "column", width:"50%" }}>
           End Time:
           <input
-            className="form-inputs"
+            className="form-inputs datePicker1"
             type="time"
             value={lateMarkEndTime2}
             onChange={(event) => setLateMarkEndTime(event.target.value)}
@@ -133,10 +133,10 @@ function DateTimePicker({ lateness }) {
         </label>
       </div>
       <br />
-      <label style={{ display: "flex", flexDirection: "column" }}>
+      <label style={{ display: "flex", flexDirection: "column" , width:"50%" }}>
         Deduction Amount:
         <input
-          className="form-inputs"
+          className="form-inputs datePicker1"
           type="number"
           value={deductionPercentage}
           onChange={(event) => setDeductionPercentage(event.target.value)}
@@ -144,7 +144,7 @@ function DateTimePicker({ lateness }) {
       </label>
 
       <br />
-      <button type="submit" style={{ width: 200 }}>
+      <button type="submit" style={{ width: 200, backgroundColor:"#5d3fd3", color:"white", border:"none", padding:"5px" }}>
         Update
       </button>
     </form>

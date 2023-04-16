@@ -6,16 +6,19 @@ import { employeeContext } from "../../Context/Context";
 import config from "../../config";
 import axios from "axios";
 import {IoIosArrowRoundBack} from "react-icons/io";
+import { InfinitySpin } from "react-loader-spinner";
 
 const UserLogin = () => {
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(employeeContext);
   const [errorMessage, setErrorMessage] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
+    setIsLoading(true);
     try {
       const res = await axios.post(`${config.baseURL}/auth/login/employee`, {
         email: userRef.current.value,
@@ -25,7 +28,11 @@ const UserLogin = () => {
       res.data && window.location.replace("/staffattendance");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
-      setErrorMessage("Invalid Email or password");
+      if(err.response.status === 401){
+        setErrorMessage("Incorrect Email or Password");
+      } else if (err.request) {
+        setErrorMessage("Network Error");
+      }
     }
   };
 
@@ -70,12 +77,24 @@ const UserLogin = () => {
             </div>
           </label>
           <div>
+          {isLoading ? (
+            <button
+            type="submit"
+              value="Sign in"
+              className="signin-btn"
+              style={{ width: "100%", marginBottom: 10, paddingRight:60 }}
+            
+            >
+               <InfinitySpin width="80" color="white" />
+            </button>
+          ) : (
             <input
               type="submit"
               value="Sign in"
               className="signin-btn"
               style={{ width: "100%", marginBottom: 10 }}
             />
+          )}
             {errorMessage && (
             <div
               className="error-message"

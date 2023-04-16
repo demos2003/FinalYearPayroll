@@ -17,7 +17,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import FaceRec from "../Components/FaceIO";
-import RecFace from "../Components/RecFaceIO";
+import { RotatingLines } from "react-loader-spinner";
+// import RecFace from "../Components/RecFaceIO";
 
 function Employees() {
   const [buttonPopup2, setBP2] = useState(false);
@@ -30,7 +31,9 @@ function Employees() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error2, setError2] = useState(false);
-  const [faceId, setFaceId] = useState(null);
+  const [faceID, setFaceID] = useState(false);
+
+  console.log(setFaceID);
 
   const [file, setFile] = useState(null);
 
@@ -41,6 +44,10 @@ function Employees() {
   const handleRemoveFile1 = () => {
     setFile(null);
   };
+
+  // function handleFaceData(data) {
+  //   setFaceData(data);
+  // }
 
   // const [error1, setError1] = useState(false);
   const handleSubmit = async (e) => {
@@ -54,9 +61,9 @@ function Employees() {
         email,
         phoneNo,
         password,
+        // faceId
       });
       res.data && window.location.reload();
-
     } catch (err) {
       // setError2("Error: Please Fill all fields");
     }
@@ -72,17 +79,19 @@ function Employees() {
   }, []);
 
   const [employee, getEmployee] = useState([]);
+  const [isEmployee, setIsGetEmployee] = useState(false);
   useEffect(() => {
     const fetchEmployee = async () => {
       const res = await axios.get(`${config.baseURL}/employee`);
       getEmployee(res.data);
+      setIsGetEmployee(true);
     };
     fetchEmployee();
   }, []);
 
-  // const handleButtonClick = () => {
-  //   document.querySelector('input[type="file"]').click();
-  // };
+  const handleButtonClick = () => {
+    document.querySelector('input[type="file"]').click();
+  };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -103,8 +112,6 @@ function Employees() {
       border: 0,
     },
   }));
-
-  
 
   return (
     <div>
@@ -208,11 +215,9 @@ function Employees() {
                   </select>
                 </div>
                 <div>
-                  <FaceRec />
-                  <RecFace />
+                  <FaceRec faceID={faceID} setFaceID={setFaceID} />
+                  {/* <RecFace /> */}
                 </div>
-                {/* <button onClick={faceRegistration}>Register Face</button>
-                  <button className="action face-sign-in" onClick={faceSignIn}>Face Sign In</button> */}
               </div>
               <button type="submit" className="btn btn-primary save-btn">
                 Save
@@ -221,13 +226,13 @@ function Employees() {
             </form>
           </Popup1>
           <div
-            style={{ width: 900, height: 542, marginLeft: "3%" }}
-            className="attendance_table-holder"
+            style={{ height: 542, marginLeft: "3%", width: "95%" }}
+            className="attendance_table-holder table-holder"
           >
             <h1 style={{ marginTop: 50 }}>EMPLOYEES</h1>
             <TableContainer
               component={Paper}
-              style={{ marginTop: 40, marginBottom: 20 }}
+              style={{ marginTop: 40, marginBottom: 20, width: "100%" }}
               id="TableCont"
             >
               <Table sx={{ minWidth: 550 }} aria-label="customized table">
@@ -250,28 +255,42 @@ function Employees() {
                     </TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
-                  {employee.map((emp) => (
-                    <StyledTableRow>
-                      <StyledTableCell className="columnWidth">
-                        {emp._id}
-                      </StyledTableCell>
-                      <StyledTableCell className="columnWidth">
-                        {emp.name}
-                      </StyledTableCell>
-                      <StyledTableCell className="columnWidth">
-                        {emp.position.name}
-                      </StyledTableCell>
-                      <StyledTableCell className="columnWidth">
-                        <Editbtn
-                          emp={emp}
-                          employeeEmp={emp._id}
-                          positonId={positonId}
-                        />
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
+                {isEmployee ? (
+                  <TableBody>
+                    {employee.map((emp) => (
+                      <StyledTableRow>
+                        <StyledTableCell className="columnWidth">
+                          {emp._id}
+                        </StyledTableCell>
+                        <StyledTableCell className="columnWidth">
+                          {emp.name}
+                        </StyledTableCell>
+                        <StyledTableCell className="columnWidth">
+                          {emp.position.name}
+                        </StyledTableCell>
+                        <StyledTableCell className="columnWidth">
+                          <Editbtn
+                            emp={emp}
+                            employeeEmp={emp._id}
+                            positonId={positonId}
+                          />
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ))}
+                  </TableBody>
+                ) : (
+                  <div className="loadingArea">
+                  <div className="RL">
+                    <RotatingLines
+                      strokeColor="#7f6ad3"
+                      strokeWidth="5"
+                      animationDuration="0.75"
+                      width="56"
+                      visible={true}
+                    />
+                  </div>
+                </div>
+                )}
               </Table>
             </TableContainer>
             <button className="AddEmployee" onClick={() => setBP2(true)}>
